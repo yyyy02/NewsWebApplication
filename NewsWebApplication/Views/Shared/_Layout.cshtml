@@ -5,30 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NewsWebApplication</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NewsWebApplication.styles.css" asp-append-version="true" />
+    <script src="/lib//jquery/dist/jquery.min.js"></script>
+    <script src="/js/site.js"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsWebApplication</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsWebApplication</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="container-fluid">
+                                <form class="bs-example bs-example-form" role="form" style="margin:8px">
+                                    <div class="col-lg-auto">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-user"></span> User
+                    </button>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            @*选择标签导航栏*@
+            <nav class="navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-1">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="nav nav-pills col-md-offset-2">
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">科技</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">旅游</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">时尚</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">教育</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">健康</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">艺术</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">体育</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">娱乐</a></div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">游戏</a></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

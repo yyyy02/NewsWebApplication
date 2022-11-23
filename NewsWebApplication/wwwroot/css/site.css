@@ -16,3 +16,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.Tag-List-Pill {
+    margin: 5px;
+}
+
+.Tag-List-Pill a{
+    width:70px
+}
+
+/*修改bootstrap的btn-outline-primary样式*/
+.btn-outline-primary {
+    border-color: #0d6efd;
+}
+.btn-outline-primary:hover {
+    color: #000000;
+    background-color: rgb(90,170,255);
+    border-color: rgb(90,170,255);
+}

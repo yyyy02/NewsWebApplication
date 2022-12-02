@@ -1,0 +1,64 @@
+﻿body {
+}
+
+
+/*Carousel chart and heat list*/
+.CachartAndHeatList {
+    display: flex;
+    justify-content: space-between;
+}
+    .CachartAndHeatList .Cachart_container {
+        width: calc(45vw + 20px);
+        height: calc(45vw / 1.62);
+        /*border: 2px solid red;*/
+        position: relative;
+        margin-top: 20px;
+        display:flex;
+        overflow:hidden
+    }
+        .CachartAndHeatList .Cachart_container ul {
+            position: absolute;
+            list-style: none;
+            width: 50000px;
+            height: 100%;
+            padding-left: 0;
+        }
+            .CachartAndHeatList .Cachart_container ul li {
+                float: left;
+                height:100%;
+                display: inline-flex;
+                margin: 0;
+                padding: 0 10px 0 10px;
+            }
+        /*轮播图下面的点*/
+        .CachartAndHeatList .Cachart_container .ol_list {
+            width: calc((45vw + 20px)/3.5);
+            height: 2vw;
+            margin:auto;
+            z-index:999;
+            margin-bottom:2px;
+        }
+        .CachartAndHeatList .Cachart_container ol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, .3);
+            list-style: none;
+            padding: 0px;
+            opacity: 1;
+        }
+            .CachartAndHeatList .Cachart_container ol li {
+                cursor: pointer;
+                float: left;
+                margin: 0px 3px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: #fff;
+            }
+/*当前播放的图片*/
+.CachartAndHeatList .Cachart_container .current {
+    background-color: #ff5000;
+}

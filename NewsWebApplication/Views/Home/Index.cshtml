@@ -8,9 +8,13 @@
         <script src="/lib//jquery/dist/jquery.min.js"></script>
         <script src="/js/Home-index.js"></script>
         <link rel="stylesheet" href="~/css/Home-index.css" asp-append-version="true" />
+        <link rel="stylesheet" href="./fonts/font_pc91p14nhe/iconfont.css"/>
+        <link rel="stylesheet" href="./fonts/font_lgwa9q5jwc/iconfont.css"/>
+        <link rel="stylesheet" href="./fonts/font_hoe6is2bej7/iconfont.css" />
+        <link rel="stylesheet" href="./fonts/font_t495264e78/iconfont.css" />
     </head>
     <body>
-    <div class="text-center">
+@*    <div class="text-center">
         <h1 class="display-4">Welcom</h1>
         <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
@@ -26,224 +30,126 @@
                 </span>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
-    </form>
+    </form>*@
 
-    
-    <nav class="row mt-5">
-        <div class="nav nav-tabs">
-            <a class="nav-item nav-link active" data-toggle="tab" href="#home">今日要闻</a>
-            <a class="nav-item nav-link disabled" data-toggle="tab" style="margin-left:auto" id="time"> </a>
-        </div>
-    </nav>
+    <div>
+        <nav class="row mt-4">
+            <div class="nav nav-tabs">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#home">今日要闻</a>
+                <a class="nav-item nav-link disabled" data-toggle="tab" style="margin-left:auto" id="time"> </a>
+            </div>
+        </nav>
 
+        @*导航下的整一个div*@
+        <div class="content">
+            <div class="left">
+                <div class="CachartAndHeatList">
+                    <div style="width:70%;height:400px;border-bottom-style:solid;border-color:rgb(239,239,239);display:flex">
+                        <div class="Cachart_container">
+                            <ul>
+                                <li>
+                                    <img src="./1.png">
+                                </li>
+                                <li>
+                                    <img src="./2.png">
+                                </li>
+                                <li>
+                                    <img src="./3.png">
+                                </li>
+                                <li>
+                                    <img src="./4.png">
+                                </li>
+                                <li>
+                                    <img src="./5.png">
+                                </li>
+                            </ul>
+                            <div class="ol_list">
+                                <ol>
+                                    <li class="current"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="Cachart_container_after">
+                            <div class="after_img">
+                                <img src="./1.png">
+                            </div>
+                            <div class="after_img">
+                                <img src="./1.png">
+                            </div>
+                        </div>
+                        
+                    </div>
 
-    <div class="CachartAndHeatList">
-        <div class="Cachart_container">
-            <ul>
-                <li> 
-                    <img src="./1.png">
-                </li>
-                <li>
-                    <img src="./2.png">
-                </li>
-                <li>
-                    <img src="./3.png">
-                </li>
-                <li>
-                    <img src="./4.png">
-                </li>
-                <li>
-                    <img src="./5.png">
-                </li>
-            </ul>
-            <div class="ol_list">
-                <ol>
-                    <li class="current"></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ol>
+                    <div class="HeatList">
+                        <div class="List">
+                            <div class="Header">热点榜</div>
+                                <ul>
+                                    <li><div class="rankIcon-num1">1</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
+                                    <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon">6</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon">7</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon">8</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li><div class="rankIcon">9</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                    <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="NewsList">
+                    <div class="Header">
+                        <div style="font-family:STKaiti;font-size:2vw;margin-top:-25px">热点精选</div>
+                    </div>
+                    <div class="List">
+                        <ul>
+                            <li>
+                                <div class="NewsImg">
+                                    <img src="./1.png">
+                                </div>
+                                <div class="News">
+                                    <div class="Title">世界卫生组织：还没到宣布新观大流行结束的时候</div>
+                                    <div class="Description">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</div>
+                                    <div class="Bottom">
+                                        <div class="PulishTime">1小时前</div>
+                                        <div class="Share">
+                                            <i class="iconfont">&#xe624</i>
+                                            <span>分享</span>
+                                        </div>
+                                        <div class="Views">
+                                            <i class="iconfont">&#xe627</i>
+                                            <span>395</span>
+                                        </div>
+                                    </div>
+                                </div>
+                             </li>
+                            <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
+                            <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li><div class="rankIcon">6</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li><div class="rankIcon">7</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li><div class="rankIcon">8</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li><div class="rankIcon">9</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="fixed-bar">
+                    <a class="item refresh" href="#"><i class="iconfont">&#xe641</i><span>刷新</span></a>
+                    <a class="item" href="#"><span class="txt" style="display:block;margin-top:10px">用户<br>反馈</span></a>
+                    <a class="item" href="#"><i class="iconfont" style="display:block;padding-top:15px">&#xe62c</i></a>
+                </div>
             </div>
         </div>
-        @*<div id="Cachart" class="box">
-            <ul class="pic">
-                <li>
-                    <div class="category-cover">
-                        <img src="./1.png" alt="">
-                    </div>
-                </li>
-                <li>
-                    <div class="category-cover">
-                        <img src="./2.png" alt="">
-                    </div>
-                </li>
-                <li>
-                    <div class="category-cover">
-                        <img src="./1.png" alt="">
-                    </div>
-                </li>
-                <li>
-                    <div class="category-cover">
-                        <img src="./2.png" alt="">
-                    </div>
-                </li>
-                <li>
-                    <div class="category-cover">
-                        <img src="./1.png" alt="">
-                    </div>
-                </li>
-            </ul>
-            <ol>
-                <li class="current"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ol>
-        </div>*@
-        <div>
-            456
-        </div>
-    </div>
-    <div>
-        <p>
-            此次中美防长会谈，是中美元首会晤8天后进行的
-
-            元首会晤中，两国元首责成两国工作团队及时跟进和落实两国元首达成的重要共识。
-
-            元首会晤后，中美双方团队按照两国元首确定的工作重点，保持对话沟通，管控矛盾分歧，推动交往合作。
-
-            8天时间里，中美双方在3个领域进行了5次沟通。
-
-            其中，中美经济团队就宏观经济政策、经贸等问题进行了3次沟通：
-
-            11月16日，中国人民银行行长易纲在印度尼西亚巴厘岛G20领导人峰会期间会见了美国财长耶伦；
-
-            11月16日，国家发展改革委副主任连维良会见美中贸易全国委员会会长艾伦和其率领的美企业代表团；
-
-            11月18日，中国商务部部长王文涛在泰国曼谷APEC领导人非正式会议期间应约会见美国贸易代表戴琪。
-
-            中美两国气候问题特使进行了1次沟通：
-
-            此次中美防长沟通，是中美两军在落实元首共识。
-
-            清华大学战略与安全研究中心研究员周波告诉谭主，“不相撞”就是指在军事层面上不发生冲突。中美两个大国，不发生冲突、不发生战争，对两国以及世界都至关重要。
-
-            不发生冲突本身，就是危机管控的一部分。
-
-            不偏航、不失速、不相撞，习近平主席从不同维度更加形象地诠释了中美关系健康稳定的状态。中美防长谈危机管控，谈论“不相撞”的问题，加上其他各领域的前4次沟通，立体、全面地将元首共识落在实处。
-
-            这不仅是对中美关系负责，也是对世界负责。
-
-
-            此次会谈，中方是应约。
-
-            会谈前一周，奥斯汀公开表示，需要努力保持同中国沟通渠道的畅通，这有助于危机管控。
-
-            对此，国防部新闻发言人回应，中方对东盟防长扩大会期间与美方进行交流持积极、开放态度，双方有关部门正就此保持沟通协调。
-
-            会谈后，国防部新闻发言人在吹风会上提到，中方对于发展两国两军关系的态度是真诚的，但基本前提是美方必须说到做到、信守承诺，把两国元首共识真正落到实处。
-
-            谈，可以，但要有前提——美方要尊重中方的核心利益。
-
-            此次会谈前，奥斯汀还表示，希望中方开通战区层级的沟通渠道，美国印太司令部司令阿奎利诺希望与他的中国同行也能沟通。
-
-            清华大学战略与安全研究中心学术委员会委员张沱生告诉谭主，中美之间有两条热线，一条是元首级别的，一条设在国防部。
-
-            开通战区层级的热线，有助于中美加强沟通，更好地管控分歧。
-
-            谈之前，美方，需要做好自己该做的。
-
-
-            此次会谈，是今年以来，中美国防部长第三次沟通交流。
-
-            三次交流，中美都谈到了危机管控的问题。
-
-            早在2021年，美军参谋长联席会议主席米利就曾两次致电中国军方，保证美国是稳定的，不会主动挑起战争。
-
-            但美国内部，真的稳定吗？想必明眼人，都有答案。
-
-            也正因如此，中美军方沟通时，中方都会谈到危机管控。
-
-            今年4月，中方讲的是管控风险危机，开展务实合作，确保两军关系正常稳定发展。
-
-            说这话的背景，是一些地区热点问题可能产生溢出效应引发危机，中美两军都有管控风险、稳定两军关系的意愿。
-
-            今年6月，中方谈的是管控好矛盾分歧，不把矛盾分歧变成冲突对抗。
-
-            很明显，中方的措辞发生了变化。
-
-            原因，是美方有人没有将拜登总统的“四不一无意”承诺落到实处。会谈前，美军舰过航台湾海峡并公开炒作。
-
-            中国人民解放军东部战区对美舰过航行动全程跟监警戒，战区部队保持高度戒备，随时做好挫败任何挑衅准备。
-
-            权威军事专家告诉谭主，美国将中国定性为战略竞争对手后，从各个方面围堵遏制中国，但美方也逐渐意识到，冲突对抗没有赢家，不符合双方利益。
-
-            早些时候，美方还会提所谓“第一岛链”围堵中国，但结果是，中国军队早已具备穿越所谓“第一岛链”的战略能力。
-
-            除了公开炒作之外，美国在中国周边难以占到什么便宜。
-
-            此次会谈中，双方认为，两军应保持沟通接触，加强危机管控。
-
-            张沱生告诉谭主，该斗争斗争，该谈就谈，该合作就合作，这才是大国气魄，也是负责任大国该有的样子。
-
-
-            会谈中，中方重申在台湾问题上的坚定立场。
-
-            权威军事专家告诉谭主，拜登政府上台后，美国越来越把台湾当作一张“牌”来打，台湾问题明显变成了着力点。中美在台湾问题上的博弈，越来越成为硬手段的比拼。
-
-            危机管控的重要意义，也进一步凸显。
-
-            会谈中，魏凤和强调，台湾问题是中国核心利益中的核心，是中美关系第一条不可逾越的红线。
-
-            第一条红线，对于以“统一祖国、制止分裂”为神圣使命的中国人民解放军来说，意味着什么？
-
-            权威军事专家告诉谭主，军事上的“红线”，意味着不可逾越。如果逾越就会遭到强烈的反制与报复，要付出非常大的代价。相比于其他领域的报复，军事上的报复更加立竿见影，也会特别快。
-
-            中国军队有骨气、有底气，有信心、有能力坚决维护祖国统一，美国，必须正视。
-
-            佩洛西窜访台湾后，中方立即宣布了反制措施。看到这些措施，美国不少智库都在后怕，在他们看来，佩洛西窜台这场“不明智”的政治秀所带来的严重后果超出了预期。
-
-            任何国家想打“台湾牌”，都可以先自己掂量掂量。
-
-
-            中美防长两次线下会谈，都是在东盟国家进行的。
-
-            会谈中，中美双方也提到了地区的安全与稳定。
-
-            谁是地区安全稳定的破坏者，在东盟防长扩大会议上就能看清。
-
-            2010年，首届东盟防长扩大会议在河内举行。除了东盟10国外，中国、日本、韩国、印度、新西兰、澳大利亚、俄罗斯及美国等8个伙伴国防长也参加了会议。
-
-            会上，时任美国国防部长表示，美国海军需要留在太平洋。原因，是各国对中国南海的“主权纷争”，给地区稳定和繁荣带来巨大的挑战。
-
-            炮制矛盾，渲染威胁，这是美国一贯的老套路。
-
-            自就任国防部长以来，奥斯汀已经3次前往东南亚，访问东盟多国，意图拉拢这些国家围堵中国。
-
-            这几次访问中，奥斯汀大谈安全稳定，他表示，联盟和友谊网络是无与伦比的战略资产，加强与盟友和伙伴的合作将使美国和该地区更加安全、繁荣。
-
-            但奥斯汀的说辞，对于东盟国家而言，是“无用的推销”。
-
-            就在中美防长会谈前，印尼防长与奥斯汀举行会谈。
-
-            在新闻发布会上，印尼防长当着奥斯汀的面表示，印尼很荣幸同中国和美国成为好朋友，同时与中美两国保持着友好关系。他还表示，印尼将以对话的方式解决国与国的分歧。
-
-            新加坡外交部长在最新的演讲中，同样阐述了什么叫“亚洲方式”：
-
-            没有一个有自尊的亚洲国家愿意被困住，或者成为附庸，或者更糟糕的是，成为代理人战争的战场。
-
-            作为发展中的大洲，亚洲需要的，是和平与稳定。只会往亚洲地区派航母和军舰，施压亚洲国家“选边站”的美国，并不明白这个道理。
-
-            会谈前，谭主在现场看到的一幕，格外让谭主感到感慨。
-
-            柬埔寨国防部国务秘书宁帕在会谈地点迎接中美双方入场。在迎接奥斯汀时，只是与奥斯汀简单说了几句，双方就陷入了沉默。
-
-            但在迎接中国防长时，宁帕与中国防长互敬军礼并热情拥抱，满脸笑意。
-
-            什么是真朋友，答案，都藏在细节里。
-        </p>
     </div>
 
 

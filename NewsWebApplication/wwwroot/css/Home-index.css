@@ -1,20 +1,43 @@
 ﻿body {
 }
 
-
+a:hover {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration:none;
+}
+a:active {
+    text-decoration:none;
+}
 /*Carousel chart and heat list*/
 .CachartAndHeatList {
     display: flex;
     justify-content: space-between;
 }
+    .CachartAndHeatList .Cachart_container_after {
+        margin-top:20px;
+        width:auto;
+    }
+        .CachartAndHeatList .Cachart_container_after .after_img {
+            float: left;
+            width: calc(19vw + 20px);
+            height: calc(19vw / 1.62);
+            margin: 0px 10px 15px 0px;
+            overflow:hidden
+        }
+            .CachartAndHeatList .Cachart_container_after .after_img img {
+                height:100%
+            }
     .CachartAndHeatList .Cachart_container {
-        width: calc(45vw + 20px);
-        height: calc(45vw / 1.62);
+        min-width: calc(40vw + 20px);
+        height: calc(40vw / 1.62);
         /*border: 2px solid red;*/
         position: relative;
         margin-top: 20px;
-        display:flex;
-        overflow:hidden
+        display: flex;
+        overflow: hidden;
+        margin-right: 10px;
     }
         .CachartAndHeatList .Cachart_container ul {
             position: absolute;
@@ -61,4 +84,167 @@
 /*当前播放的图片*/
 .CachartAndHeatList .Cachart_container .current {
     background-color: #ff5000;
+}
+
+
+
+/*热点榜*/
+    .CachartAndHeatList .HeatList {
+        width: 25vw;
+        display:flex;
+        margin-top:20px;
+    }
+        .CachartAndHeatList .HeatList .List {
+            background-color: rgb(247,248,249);
+            width:80%;
+            height:auto;
+        }
+            .CachartAndHeatList .HeatList .List .Header {
+                font-family: STKaiti;
+                font-size:2vw;
+                padding:10px
+            }
+        .CachartAndHeatList .HeatList .List ul {
+            list-style: none;
+            padding:0;
+            margin:0;
+            width:100%;
+        }
+            .CachartAndHeatList .HeatList .List ul li {
+                border-bottom-style:solid;
+                border-color:rgb(240,240,240);
+                border-width:2px;
+                padding:8px 8px 8px 10px;
+                display:flex;
+            }
+                .CachartAndHeatList .HeatList .List ul li div {
+                    min-width: 1.5vw;
+                    height: 1.5vw;
+                    margin-right: 5px;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius:7px
+                }
+                .CachartAndHeatList .HeatList .List ul li .rankIcon-num1 {
+                    background-color:rgb(255,0,86);
+                }
+                .CachartAndHeatList .HeatList .List ul li .rankIcon-num2 {
+                    background-color: rgb(255, 125, 62);
+                }
+                .CachartAndHeatList .HeatList .List ul li .rankIcon-num3 {
+                    background-color: rgb(254, 183, 1);
+                }
+                .CachartAndHeatList .HeatList .List ul li .rankIcon {
+                    color: rgb(255, 183, 40)
+                }
+                .CachartAndHeatList .HeatList .List ul li a {
+                    color: black;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .CachartAndHeatList .HeatList .List ul li a:hover {
+                    color: rgb(34,154,247);
+                    cursor: pointer;
+                }
+
+
+/*新闻列表*/
+.NewsList .List ul {
+    list-style: none;
+    padding-left: 0;
+    width:90%;
+}
+    .NewsList .List ul li {
+        display: flex;
+        padding: 20px 0;
+        height: 30vh;
+        border-bottom-style: solid;
+        border-color: rgb(240,240,240);
+        border-width: 1px;
+    }
+        .NewsList .List ul li:hover {
+            background-color: rgb(243, 246, 248)
+        }
+    .NewsList .List ul li .NewsImg {
+        float: left;
+        height: 90%;
+        display: inline-flex;
+        margin: auto 0;
+    }
+    /*具体的新闻列表*/
+        .NewsList .List ul li .News {
+            padding-left:30px;
+            width: 70%;
+            /*border: 1px solid red;*/
+        }
+            .NewsList .List ul li .News .Title {
+                font-size:20px;
+                font-family:'Microsoft YaHei';
+                padding:30px 30px 10px 20px;
+            }
+            .NewsList .List ul li .News .Description {
+                color: #666666;
+                font-size: 14px;
+                padding: 15px 30px 0px 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .NewsList .List ul li .News .Bottom {
+                font-size:12px;
+                display: flex;
+                color: #666666;
+                padding-left:20px;
+                padding-top:30px;
+            }
+                .NewsList .List ul li .News .Bottom .Share {
+                    padding-left:450px;
+                    margin-right:50px;
+                }
+
+
+        /*右边部分（fixed_bar*/
+        .fixed-bar {
+            position: fixed;
+            right: 55px;
+            bottom: 100px;
+            width: 52px;
+            font-size: 12px;
+            z-index: 999;
+        }
+.item {
+    display:block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #e2e2e2;
+    margin-bottom:10px;
+    cursor:pointer;
+    text-align:center;
+    color:#666;
+    line-height:15px;
+    background-color:#fff;
+}
+.fixed-bar .refresh {
+    background-color:#f7fbfe;
+    border-color:#b9dcfc;
+    margin-bottom:40px;
+    color:#3563d5;
+}
+    .fixed-bar .refresh .iconfont {
+        display: block;
+        margin: 10px auto 2px;
+        width: 16px;
+        height: 16px;
+    }
+.fixed-bar .item:hover {
+    color: #2793f7
+}
+.fixed-bar .refresh:hover {
+    border-color: #88c4fa;
+    background: #e9f4ff;
 }

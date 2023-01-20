@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "577336",
+      "name": "反馈",
+      "font_class": "fankui",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "5387878",
+      "name": "历史记录_o",
+      "font_class": "lishijilu_o",
+      "unicode": "eb7b",
+      "unicode_decimal": 60283
+    }
+  ]
+}

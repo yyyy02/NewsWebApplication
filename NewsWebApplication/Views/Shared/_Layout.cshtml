@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NewsWebApplication.styles.css" asp-append-version="true" />
+    @*用户按钮*@
+    <link rel="stylesheet" href="~/fonts/font_xfw3vy59ccs/iconfont.css" />
+    @*用户反馈*@
+    <link rel="stylesheet" href="~/fonts/font_f6lun5jq3l/iconfont.css" />
+    @*历史记录*@
+    <link rel="stylesheet" href="~/fonts/font_1qiart5hja3/iconfont.css" />
+    @*退出*@
+    <link rel="stylesheet" href="~/fonts/font_ob2yxq5jxn/iconfont.css" />
     <script src="/lib//jquery/dist/jquery.min.js"></script>
     <script src="/js/site.js"></script>
 </head>
@@ -44,9 +52,20 @@
                             </li>
                         </ul>
                     </div>
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-user"></span> User
-                    </button>
+                    <div class="User-info">
+                        <button type="button" class="btn btn-default btn-lg" onclick="showInfoBox()" @*onblur="hideInfoBox()*@">
+                            <span class="glyphicon glyphicon-user"></span> User
+                        </button>
+                        <div class="User-infobox">
+                            <strong style="font-size:20px;">啊啊啊</strong>
+                            <ul>
+                                <li><i class="iconfont" style="margin-right:5px">&#xe6a4</i>个人信息</li>
+                                <li><i class="iconfont" style="margin-right:5px">&#xeb7b</i>历史记录</li>
+                                <li><i class="iconfont" style="margin-right:5px">&#xe738</i>用户反馈</li>
+                            </ul>
+                            <div class="logout"><i class="iconfont" style="margin-right:5px">&#xe892</i>退出</div>
+                        </div>
+                    </div>
                 </div>
             </nav>
             @*选择标签导航栏*@
@@ -56,31 +75,31 @@
                         <div class="col">
                             <ul class="nav nav-pills col-md-offset-2">
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">科技</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=科技" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">科技</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">旅游</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=旅行" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">旅游</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">时尚</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=时尚" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">时尚</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">教育</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=教育" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">教育</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">健康</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=健康" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">健康</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">艺术</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=艺术" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">艺术</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">体育</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=体育" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">体育</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">娱乐</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=娱乐" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">娱乐</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="#" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">游戏</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=游戏" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">游戏</a></div>
                                 </li>
                             </ul>
                         </div>

@@ -35,3 +35,48 @@ body {
     background-color: rgb(90,170,255);
     border-color: rgb(90,170,255);
 }
+
+a {
+    text-decoration: none;
+    color:black;
+}
+    a:hover {
+        text-decoration: none;
+    }
+
+
+
+/*用户选项卡*/
+.User-info {
+    position: relative;
+    margin-right: 80px;
+}
+    .User-info .User-infobox {
+        position: absolute;
+        display:none;
+        min-width: 250px;
+        min-height: 280px;
+        background-color: rgb(255,255,255);
+        z-index: 999;
+        border: 1px solid #ccc;
+        left: -80%;
+        text-align: center;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+        .User-info .User-infobox ul {
+            list-style: none;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 20px 0px;
+            margin-top:10px;
+            text-align:left;
+        }
+            .User-info .User-infobox ul li {
+                padding:10px 20px;
+            }
+        .User-info .User-infobox .logout {
+            text-align: left;
+            padding: 20px 20px;
+        }
+

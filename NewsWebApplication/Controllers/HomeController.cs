@@ -15,9 +15,29 @@ namespace NewsWebApplication.Controllers
 
         public IActionResult Index()
         {
+            //HttpClient http = new HttpClient();
+            //var str = "";
+            //HttpContent content = new StringContent(str);
+
+            //string url = "http://192.168.1.102:5000/";
+            //Task<HttpResponseMessage> postTask = http.PostAsync(url, content); 
+            //HttpResponseMessage result= postTask.Result;
+            //result.EnsureSuccessStatusCode();
+            //Task<string> task = result.Content.ReadAsStringAsync();
+            //Console.WriteLine(task.Result);
+
+            //HttpClient http = new HttpClient();
+            //string url = "http://192.168.1.102:5000/";
+            //Task<string> task = http.GetStringAsync(url);
+            //Console.WriteLine(task.Result);
             return View();
         }
 
+        public IActionResult Channel(string column)
+        {
+            ViewBag.column = column;
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

@@ -14,3 +14,16 @@ $(function () {
     })
 })
 
+
+/*显示用户弹出框*/
+function showInfoBox() {
+    if ($('.User-infobox').css('display') == 'none') {
+        $('.User-infobox').css("display", "block");
+    } else {
+        $('.User-infobox').css("display", "none");
+    }
+}
+function hideInfoBox() {
+    $('.User-infobox').css("display", "none");
+}
+

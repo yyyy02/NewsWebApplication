@@ -1,0 +1,77 @@
+﻿@{
+    //ViewData["Title"] = "Privacy Policy";
+}
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <script src="/lib//jquery/dist/jquery.min.js"></script>
+        <script src="/js/Home-Channel.js"></script>
+        <link rel="stylesheet" href="~/css/Home-Channel.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div>
+            <h2>@ViewBag.column</h2>
+        </div>
+        @*轮播图*@
+        <div class="Pic-list">
+            <div class="whole">
+                <div class="roll-img">
+                    <span class="last"></span>
+                    <ul id="ul">
+                        <li class="left">
+                            <a href="/NewsPage"><img src="~/1.png" alt=""></a><div></div>
+                        </li>
+                        <li class="center">
+                            <a href="/NewsPage"><img src="~/2.png" alt=""></a><div></div>
+                        </li>
+                        <li class="right">
+                            <a href="/NewsPage"><img src="~/3.png" alt=""></a><div></div>
+                        </li>
+                        <li class="after1">
+                            <a href="/NewsPage"><img src="~/4.png" alt=""></a><div></div>
+                        </li>
+                        <li class="after2">
+                            <a href="/NewsPage"><img src="~/5.png" alt=""></a><div></div>
+                        </li>
+                    </ul>
+                    <span class="next"></span>
+                </div>
+            </div>
+            <div class="list">
+                <span class="b"></span>
+                <span class="b" style="background-color:rgb(255,80,0) ;"></span>
+                <span class="b"></span>
+                <span class="b"></span>
+                <span class="b"></span>
+            </div>
+        </div>
+        <div class="News-list">
+            <div class="col-lg-4 col-sm-6 card">
+                    <a href="/NewsPage"><img src="~/1.png"></a>
+                    <a href="/NewsPage"><h4>123456789123456789111111111111111111111111</h4></a>
+            </div>
+            <div class="col-lg-4 col-sm-6 card">
+                <img  src="~/2.png">
+                <h4>1234567891234567845678912345674567891234567</h4>
+            </div>
+            <div class="col-lg-4 col-sm-6 card">
+                <img  src="~/3.png">
+                <h4>1234567891234567845678912345674567891234567</h4>
+            </div>
+            <div class="col-lg-4 col-sm-6 card">
+                <img src="~/4.png">
+                <h4>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</h4>
+            </div>
+            <div class="col-lg-4 col-sm-6 card">
+                <img src="~/5.png">
+                <h4>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</h4>
+            </div>
+            <div class="col-lg-4 col-sm-6 card">
+                <img src="~/1.png">
+                <h4>123456789123456789111111111111111111111111</h4>
+            </div>
+        </div>
+    </body>
+</html>

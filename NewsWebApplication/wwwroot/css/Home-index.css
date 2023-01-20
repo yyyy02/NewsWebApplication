@@ -164,6 +164,7 @@ a:active {
         border-bottom-style: solid;
         border-color: rgb(240,240,240);
         border-width: 1px;
+        cursor:pointer;
     }
         .NewsList .List ul li:hover {
             background-color: rgb(243, 246, 248)
@@ -209,7 +210,7 @@ a:active {
 
 
         /*右边部分（fixed_bar*/
-        .fixed-bar {
+.fixed-bar {
             position: fixed;
             right: 55px;
             bottom: 100px;

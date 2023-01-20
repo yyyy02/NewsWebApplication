@@ -1,0 +1,326 @@
+﻿body {
+}
+
+.container {
+    display:flex;
+    justify-content:space-between
+}
+
+.news_container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/*标题*/
+.header {
+        padding-left: 15px;
+        padding-bottom: 10px;
+        padding-right: 50px;
+        border-bottom-style: solid;
+        border-color: rgb(240,240,240);
+        border-width: 2px;
+    }
+
+.breadcrumb {
+    background-color: white;
+    margin-bottom:10px;
+    padding-left:0px;
+}
+.header .BreadNav .breadcrumb > li + li:before {
+    content: "/ ";
+    padding: 0 5px;
+}
+
+.header .Title {
+    height: auto;
+    word-wrap:break-word;
+    font-size:38px;
+    font-family:'Microsoft YaHei Bold';
+    margin-bottom:10px;
+}
+
+.header .Detail {
+    color:#999999;
+    font-family:Arial;
+    font-size:14px;
+}
+
+/*容器的文章内容*/
+.container .text .one-p {
+    line-height:2.2;
+    margin-bottom: 2em;
+    word-wrap:break-word;
+}
+.container .text p{
+    padding:20px 50px 0px 0px;
+}
+
+/*网友评论*/
+.news_container .comments .my_comments .header {
+    display:flex;
+    justify-content:space-between
+}
+.news_container .comments .my_comments .header h2 {
+    width: 30vw;
+}
+/*评论的数量*/
+.news_container .comments .my_comments .header .header-number {
+    height: 100%;
+    font-size: 14px;
+    line-height: 34px;
+    margin:20px 0px 10px;
+}
+
+
+/*发表评论框（整个）*/
+.news_container .comments .my_comments .box {
+    display:flex;
+    justify-content:left;
+    margin-top:30px;
+}
+/*发表评论头像框*/
+    .news_container .comments .my_comments .box .common-avatar {
+        display:block;
+        z-index:1;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        overflow:hidden;
+        background-color:blue;
+    }
+
+.news_container .comments .my_comments .box .box-content {
+    border: 3px solid #f0f0f0;
+    position: relative;
+    height: 100px;
+    margin-left:17px;
+}
+    .news_container .comments .my_comments .box .box-content .box-textarea-block {
+        height:95px;
+        width:50vw;
+    }
+    /*发表评论的文本框*/
+    .news_container .comments .my_comments .box .box-content .box-textarea-block .box-textarea {
+        height: 100%;
+        width: 100%;
+        display: block;
+        border: none;
+        font-size: 14px;
+        line-height: 24px;
+        color: #4b4b4b;
+        padding:10px;
+    }
+    .news_container .comments .my_comments .box .box-content .box-textarea-block textarea {
+        resize:none;
+        overflow:auto;
+    }
+    /*发表评论的按钮*/
+    .news_container .comments .my_comments .box .box-content .box-textarea-block .box-loginBtn {
+        position:absolute;
+        right: -100px;
+        top:-3px;
+        z-index:1;
+        width:100px;
+        height:100px;
+        background-color: #379be9;
+        font-size:16px;
+        line-height:100px;
+        text-align:center;
+        color:#fff;
+        cursor:pointer;
+    }
+
+
+/*全部评论*/
+.news_container .comments .all_comments {
+    margin-top:55px;
+}
+    /*全部评论的评论列表*/
+    .news_container .comments .all_comments .comments_list {
+        margin-top:40px;
+    }
+        .news_container .comments .all_comments .comments_list ul {
+            list-style: none;
+            padding-left: 15px;
+        }
+    /*单个评论*/
+        .news_container .comments .all_comments .comments_list .single_comments {
+            margin:20px 0px;
+            display:flex;
+        }
+            .news_container .comments .all_comments .comments_list .single_comments .common-avatar {
+                display: block;
+                z-index: 1;
+                min-width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                background-color: blue;
+            }
+            .news_container .comments .all_comments .comments_list .single_comments .comments-detail {
+                float:left;
+                padding-left:15px;
+                padding-top:15px;
+            }
+                .news_container .comments .all_comments .comments_list .single_comments .comments-detail .comments-detail-content {
+                    padding-top:20px;
+                }
+
+
+            .topicList {
+                width: 25vw;
+                display: flex;
+                margin-top: 170px;
+            }
+    .topicList .List {
+        width: 80%;
+        height: auto;
+    }
+
+        .topicList .List .Header {
+            font-family: STKaiti;
+            font-size: 2vw;
+            padding: 10px
+        }
+        .topicList .List ul {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+            .topicList .List ul li {
+                border-color: rgb(240,240,240);
+                border-width: 2px;
+                padding: 8px 8px 8px 10px;
+                display: flex;
+            }
+
+
+.HeatList {
+    width: 25vw;
+    display: flex;
+    margin-top: 50px;
+}
+
+     .HeatList .List {
+        background-color: rgb(247,248,249);
+        width: 80%;
+        height: auto;
+    }
+
+        .HeatList .List .Header {
+            font-family: STKaiti;
+            font-size: 2vw;
+            padding: 10px
+        }
+
+         .HeatList .List ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+            .HeatList .List ul li {
+                border-bottom-style: solid;
+                border-color: rgb(240,240,240);
+                border-width: 2px;
+                padding: 8px 8px 8px 10px;
+                display: flex;
+            }
+
+                 .HeatList .List ul li div {
+                    min-width: 1.5vw;
+                    height: 1.5vw;
+                    margin-right: 5px;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 7px
+                }
+
+                 .HeatList .List ul li .rankIcon-num1 {
+                    background-color: rgb(255,0,86);
+                }
+
+                .HeatList .List ul li .rankIcon-num2 {
+                    background-color: rgb(255, 125, 62);
+                }
+
+                 .HeatList .List ul li .rankIcon-num3 {
+                    background-color: rgb(254, 183, 1);
+                }
+
+                .HeatList .List ul li .rankIcon {
+                    color: rgb(255, 183, 40)
+                }
+
+                 .HeatList .List ul li a {
+                    color: black;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                     .HeatList .List ul li a:hover {
+                        color: rgb(34,154,247);
+                        cursor: pointer;
+                    }
+
+/*右边部分（fixed_bar*/
+.fixed-bar {
+    position: fixed;
+    right: 55px;
+    bottom: 100px;
+    width: 52px;
+    font-size: 12px;
+    z-index: 999;
+}
+
+.item {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    color: #666;
+    line-height: 15px;
+    background-color: #fff;
+}
+
+.fixed-bar .refresh {
+    background-color: #f7fbfe;
+    border-color: #b9dcfc;
+    margin-bottom: 40px;
+    color: #3563d5;
+}
+
+
+
+    .fixed-bar .refresh .iconfont {
+        display: block;
+        margin: 10px auto 2px;
+        width: 16px;
+        height: 16px;
+    }
+
+.fixed-bar .comments .iconfont {
+    display: block;
+    margin: 10px auto 2px;
+    width: 16px;
+    height: 16px;
+}
+
+
+.fixed-bar .item:hover {
+    color: #2793f7
+}
+
+.fixed-bar .refresh:hover {
+    border-color: #88c4fa;
+    background: #e9f4ff;
+}
+

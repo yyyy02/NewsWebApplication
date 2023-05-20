@@ -49,7 +49,18 @@
                     <div style="width:70%;height:400px;border-bottom-style:solid;border-color:rgb(239,239,239);display:flex">
                         <div class="Cachart_container">
                             <ul>
-                                <li>
+                                @for (int i = 0; i < ViewBag.PicNews.Count; i++)
+                                {
+                                    @if (i<5)
+                                    {
+                                        <li>
+                                            <a href="/NewsPage/?Column=@ViewBag.PicNews[i].NewColumn&Id=@ViewBag.PicNews[i].NewId">
+                                                <img src="~/@ViewBag.PicNews[i].NewPicture" alt="">
+                                            </a>   
+                                        </li>                                    
+                                    }
+                                }
+@*                                <li>
                                     <img src="./1.png">
                                 </li>
                                 <li>
@@ -63,7 +74,7 @@
                                 </li>
                                 <li>
                                     <img src="./5.png">
-                                </li>
+                                </li>*@
                             </ul>
                             <div class="ol_list">
                                 <ol>
@@ -76,12 +87,17 @@
                             </div>
                         </div>
                         <div class="Cachart_container_after">
-                            <div class="after_img">
-                                <img src="./1.png">
-                            </div>
-                            <div class="after_img">
-                                <img src="./1.png">
-                            </div>
+                            @for (int i = 0; i < ViewBag.PicNews.Count; i++)
+                            {
+                                @if (i > 5 && i < 8)
+                                {
+                                    <div class="after_img">
+                                        <a href="/NewsPage/?Column=@ViewBag.PicNews[i].NewColumn&Id=@ViewBag.PicNews[i].NewId">
+                                            <img src="~/@ViewBag.PicNews[i].NewPicture" alt="">
+                                        </a>
+                                    </div>
+                                }
+                            }
                         </div>
                         
                     </div>
@@ -90,16 +106,21 @@
                         <div class="List">
                             <div class="Header">热点榜</div>
                                 <ul>
-                                    <li><div class="rankIcon-num1">1</div><a href="/NewsPage">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
-                                    <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon">6</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon">7</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon">8</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li><div class="rankIcon">9</div><a href="#">江泽民伟大光辉的一生</a></li>
-                                    <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
+                                @for (int i = 0; i < ViewBag.HeatNews.Count;i++)
+                                {
+                                    @if (i == 0)
+                                    {
+                                        <li><div class="rankIcon-num1">1</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                    } else if(i == 1){
+                                        <li><div class="rankIcon-num2">2</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                    } else if(i == 2)
+                                    {
+                                        <li><div class="rankIcon-num3">3</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                    }else if(i <= 10)
+                                    {
+                                        <li><div class="rankIcon">@i</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                    }
+                                }                    
                                 </ul>
                         </div>
                     </div>
@@ -111,34 +132,38 @@
                     </div>
                     <div class="List">
                         <ul>
-                            <li>
-                                <div class="NewsImg">
-                                    <img src="./1.png">
-                                </div>
-                                <div class="News">
-                                    <div class="Title">世界卫生组织：还没到宣布新观大流行结束的时候</div>
-                                    <div class="Description">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</div>
-                                    <div class="Bottom">
-                                        <div class="PulishTime">1小时前</div>
-                                        <div class="Share">
-                                            <i class="iconfont">&#xe624</i>
-                                            <span>分享</span>
+                            @if (ViewBag.RecommNews != null)
+                            {
+                                @foreach (var item in ViewBag.RecommNews)
+                                {
+                                    <a href="/NewsPage/?Column=@item.NewColumn&Id=@item.NewId">
+                                    <li>
+                                        <div class="NewsImg">
+                                            <img src="~/@item.NewPicture">
                                         </div>
-                                        <div class="Views">
-                                            <i class="iconfont">&#xe627</i>
-                                            <span>395</span>
+                                        <div class="News">
+                                            <div class="Title">@item.NewTitle</div>
+                                            <div class="Description">@item.NewContent</div>
+                                            <div class="Bottom">
+                                                <div class="PulishTime">@item.NewDate</div>
+                                                <div class="Share">
+                                                    <i class="iconfont">&#xe624</i>
+                                                    <span>分享</span>
+                                                </div>
+                                                <div class="Views">
+                                                    <i class="iconfont">&#xe627</i>
+                                                    <span>@item.NewHeat</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                             </li>
+                                    </li>
+                                    </a>
+                                }
+                            }
                             <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
                             <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
                             <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
                             <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li><div class="rankIcon">6</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li><div class="rankIcon">7</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li><div class="rankIcon">8</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li><div class="rankIcon">9</div><a href="#">江泽民伟大光辉的一生</a></li>
                             <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
                         </ul>
                     </div>
@@ -146,8 +171,11 @@
             </div>
             <div class="right">
                 <div class="fixed-bar">
-                    <a class="item refresh" href="#"><i class="iconfont">&#xe641</i><span>刷新</span></a>
-                    <a class="item" href="#"><span class="txt" style="display:block;margin-top:10px">用户<br>反馈</span></a>
+                    <a class="item refresh" onclick="javascript:location.reload();"><i class="iconfont">&#xe641</i><span>刷新</span></a>
+                    @if (ViewData["UserName"] != null)
+                    {
+                        <a class="item" onclick="feedback()"><span class="txt" style="display:block;margin-top:10px">用户<br>反馈</span></a>
+                    }
                     <a class="item" href="#"><i class="iconfont" style="display:block;padding-top:15px">&#xe62c</i></a>
                 </div>
             </div>

@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "117353261",
+      "name": "喜欢",
+      "font_class": "xihuan",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 namespace NewsWebApplication.Models
 {
-    public class ErrorViewModel
+    public class MVCFilter
     {
         public string? RequestId { get; set; }
 

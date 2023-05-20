@@ -1,7 +1,15 @@
+using EntityFrameworkDemo.DB;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
+using NewsWebApplication.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add Sessions to the container
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -16,7 +24,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+//app.UseMiddleware<LoginCheckr>();
+
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

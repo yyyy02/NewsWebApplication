@@ -2,6 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    string Column = (string)ViewData["Column"];
+    int NewId = (int)ViewData["NewId"];
 }
 
 <!DOCYPE HTML>
@@ -9,30 +11,38 @@
     <head>
         <script src="/lib//jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="~/css/NewsPage-index.css" asp-append-version="true" />
-        <link rel="stylesheet" href="./fonts/font_pc91p14nhe/iconfont.css" />
-        <link rel="stylesheet" href="./fonts/font_lgwa9q5jwc/iconfont.css" />
-        <link rel="stylesheet" href="./fonts/font_prpz1fcjx9/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_pc91p14nhe/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_lgwa9q5jwc/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_prpz1fcjx9/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_ltsq92hmxfi/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_j0584itrtar/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_r257i3dxhp/iconfont.css" />
+    
+
     </head>
     <body>
       <div class="container">
         <div class="news_container">
+          @foreach(var item in ViewBag.dyObject)
+          {
             <div class="header">
                 <div class="BreadNav">
                     <ul class="breadcrumb">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">2013</a></li>
-                        <li class="active">十一月</li>
+                        <li><a href="/Home">Home</a></li>
+                            <li><a href="/Home/Channel/?column=@ViewData["Column"]">@Column</a></li>
+                        @*<li class="active">十一月</li>*@
                     </ul>
                 </div>
                 <div class="Title">
-                    国家宪法日丨各地开展形式多样宪法法律知识宣传活动
+                    @*国家宪法日丨各地开展形式多样宪法法律知识宣传活动*@
+                    @item.NewTitle
                 </div>
                 <div class="Detail">
-                    <div class="Time">2022-12-04 07:41:46</div>
+                    <div class="Time">@*2022-12-04 07:41:46*@@item.NewDate</div>
                 </div>
             </div>
             <div class="text">
-                <p class="one-p">
+                @*<p class="one-p">
                     <strong>全国法制宣传日</strong>
                     新修订的
                     《中华人民共和国农产品质量安全法》
@@ -52,24 +62,63 @@
                 <p class="one-p">美国曾试图对中国“以接触促转变”，但近年来不得不承认难以从内部改变中国，然而对中国搞“颜色革命”的图谋从未停止。此轮疫情发生后，各地医院、殡葬机构里立马多了不少“洋面孔”，他们在四处搜罗中国涉疫“黑料”。《纽约时报》等不断放大负面个案，给民众的一些抱怨不满扣上“反政府”“反威权”帽子，唯恐中国不乱。</p>
                 <p class="one-p"><strong>美国拥有世界上最先进的医疗技术、最完备的医疗体系，却“躺平”不作为，最终成为死亡人数最多国家，并大搞“医学种族主义”，通过栽赃中国来转移矛盾、甩锅推责。</strong></p>
                 <p class="one-p">这些言论显然站不住脚。中国本轮疫情病毒全部来自境外，中国也是受害者。而美国则几乎集齐全套变异株，还任由病毒变异发展。<strong>如果有谁向世界输出变异株，那也只能是美国。</strong></p>
-                <p class="one-p"></p>
+                <p class="one-p"></p>*@
+                <p class="one-p"><img src="~/@item.NewPicture"></p>
+                <p class="one-p">@item.NewContent</p>
             </div>
+           }
             <div class="comments">
                 <div class="my_comments">
                     <div class="header">
                         <h2>网友评论</h2>
-                        <div class="header-number">1335条评论</div>
+                            @if (ViewData["UserName"] == null)
+                            {
+                                <a asp-action="Index" asp-controller="Login">
+                            <div class="like">
+                                <i class="iconfont">&#xe761;</i>
+                                <div>喜欢</div>
+                            </div>
+                            <div class="dislike">
+                                <i class="iconfont">&#xeb7d;</i>
+                                <div>不喜欢</div>
+                            </div>
+                                </a>
+                            }
+                            else
+                            {
+                             <div class="like" onclick="like()">
+                                <i class="iconfont">&#xe761;</i>
+                                <div>喜欢</div>
+                            </div>
+                            <div class="dislike" onclick="dislike()">
+                                <i class="iconfont">&#xeb7d;</i>
+                                <div>不喜欢</div>
+                            </div>                               
+                            }
+                            <div class="header-number">@ViewBag.dyComments.Count 条评论</div>
                     </div>
                     <div class="box">
                         <div class="common-avatar">
-                            
+                            <img src="~/fonts/my.png" style="height:25px;margin:12.5px">
                         </div>
-                        <div class="box-content">
-                            <div class="box-textarea-block">
-                                <textarea class="box-textarea" placeholder="发表你的看法"></textarea>
-                                <span class="box-loginBtn">登录</span>
-                            </div>
-                        </div>
+                            @if (ViewData["UserName"] == null)
+                            {
+                                <div class="box-content">
+                                    <div class="box-textarea-block">
+                                        <textarea class="box-textarea" placeholder="您尚未登录，不能发表评论" readonly>
+                                        </textarea>
+                                        <a asp-controller="Login" asp-action="Index"><span class="box-loginBtn">登录</span></a>
+                                    </div>
+                                </div>
+                            }else{
+                                <div class="box-content">
+                                    <div class="box-textarea-block">
+                                        <textarea class="box-textarea" placeholder="发表你的看法" id="Comment"></textarea>
+                                        <span class="box-loginBtn" onclick="PostComment()">发表</span>
+                                    </div>
+                                </div>
+                            }
+
                     </div>
                 </div>
                 <div class="all_comments">
@@ -78,27 +127,32 @@
                     </div>
                     <div class="comments_list">
                         <ul>
+                            @foreach (var item in ViewBag.dyComments)
+                            {
                             <li>
                                 <div class="single_comments">
-                                    <div class="common-avatar"></div>
+                                    <div class="common-avatar">
+                                        <img src="~/fonts/my.png" style="height:25px;margin:12.5px">
+                                    </div>
                                     <div class="comments-detail">
-                                        <div class="comments-detail-name">123</div>
+                                        <div class="comments-detail-name">@item.User</div>
                                         <div class="comments-detail-content">
                                             <p>
-                                                一开始的目标是解决各种各样的ANR问题的，但是我们知道，ANR总体上分有四种类型，这四种ANR类型有三种是和四大组件相对应的，所以，如果想了解ANR发生的根因，对安卓四大组件的实现原理必须要懂。
+                                                        @item.Comment
+@*                                                一开始的目标是解决各种各样的ANR问题的，但是我们知道，ANR总体上分有四种类型，这四种ANR类型有三种是和四大组件相对应的，所以，如果想了解ANR发生的根因，对安卓四大组件的实现原理必须要懂。
 
                                                 所以作者会写一系列的文章，来分析四大组建的实现原理，同时也会写相应的文章来讲解四种类型的ANR是如何发生的。
 
                                                 本篇文章的配套文章，介绍BroadCast中的ANR是如何产生的如下：
                                                 ————————————————
                                                 版权声明：本文为CSDN博主「失落夏天」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-                                                原文链接：https://blog.csdn.net/rzleilei/article/details/128550566
+                                                原文链接：https://blog.csdn.net/rzleilei/article/details/128550566*@
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>456</li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -109,12 +163,14 @@
                 <div class="List">
                     <div class="Header">专题推荐</div>
                     <ul>
-                        <li><a href="/NewsPage">江泽民伟大光辉的一生</a></li>
-                        <li><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
-                        <li><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><a href="#">江泽民伟大光辉的一生</a></li>
+                            @for (int i = 0; i < ViewBag.TopicNews.Count; i++)
+                            {
+                                @if (i <= 5)
+                                {
+                                <li><a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">@ViewBag.TopicNews[i].Title</a></li>
+                                }
+                                
+                            }
                     </ul>
                 </div>
             </div>
@@ -122,16 +178,25 @@
                 <div class="List">
                     <div class="Header">热点榜</div>
                     <ul>
-                        <li><div class="rankIcon-num1">1</div><a href="/NewsPage">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
-                        <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon">6</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon">7</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon">8</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li><div class="rankIcon">9</div><a href="#">江泽民伟大光辉的一生</a></li>
-                        <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
+                            @for (int i = 0; i < ViewBag.HeatNews.Count; i++)
+                            {
+                                @if (i == 0)
+                                {
+                                <li><div class="rankIcon-num1">1</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                }
+                                else if (i == 1)
+                                {
+                                <li><div class="rankIcon-num2">2</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                }
+                                else if (i == 2)
+                                {
+                                <li><div class="rankIcon-num3">3</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                }
+                                else if (i <= 10)
+                                {
+                                <li><div class="rankIcon">@i</div><a href="/NewsPage/?Column=@ViewBag.HeatNews[i].Column&Id=@ViewBag.HeatNews[i].Id">@ViewBag.HeatNews[i].Title</a></li>
+                                }
+                            }
                     </ul>
                 </div>
             </div>
@@ -142,10 +207,62 @@
          <div class="right">
              <div class="fixed-bar">
                  <a class="item comments" href="#"><i class="iconfont">&#xe891</i><span>评论</span></a>
-                 <a class="item refresh" href="#"><i class="iconfont">&#xe641</i><span>刷新</span></a>
-                 <a class="item" href="#"><span class="txt" style="display:block;margin-top:10px">用户<br>反馈</span></a>
+                 <a class="item refresh" onclick="javascript:location.reload();"><i class="iconfont">&#xe641</i><span>刷新</span></a>
+                @if (ViewData["UserName"] != null)
+                {
+                <a class="item" onclick="feedback()"><span class="txt" style="display:block;margin-top:10px">用户<br>反馈</span></a>
+                }
                  <a class="item" href="#"><i class="iconfont" style="display:block;padding-top:15px">&#xe62c</i></a>
              </div>
          </div>
+         <script>
+        function like(){
+            $('.like').css("color", "red");
+            var NewId = '@ViewData["NewId"]';
+            var UserId = '@ViewData["UserId"]';
+            $.ajax({
+                url:"/NewsPage/Like",
+                type:"POST",
+                data: { NewId: NewId, UserId: UserId },
+                success: function(data){
+                    console.log(data)
+                }
+            })
+            alert("推荐成功")
+        }
+        function dislike() {
+            $('.dislike').css("color", "blue");
+            var NewId = '@ViewData["NewId"]';
+            var UserId = '@ViewData["UserId"]';
+            $.ajax({
+                url:"/NewsPage/DisLike",
+                type:"POST",
+                data: { NewId: NewId, UserId: UserId },
+                success: function(data){
+                    console.log(data)
+                }
+            })
+            alert("取消推荐")
+        }
+        function PostComment() {
+            var Comment = document.getElementById("Comment").value;
+            var NewId = '@ViewData["NewId"]';
+            var UserId = '@ViewData["UserId"]';
+            if(Comment == ""){
+                alert("评论为空！")
+            }else{
+               $.ajax({
+                    url: "/NewsPage/PushComments",
+                type:"POST",
+                data:{NewId:NewId, UserId:UserId, Comment:Comment},
+                sucess: function(data){
+                        console.log(data.d);
+                }
+            })
+                alert("评论成功");
+                location.reload();
+            }
+        }
+         </script>
     </body>
 </html>

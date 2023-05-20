@@ -14,27 +14,57 @@
         <div>
             <h2>@ViewBag.column</h2>
         </div>
+        <div>
+        </div>
         @*轮播图*@
         <div class="Pic-list">
             <div class="whole">
                 <div class="roll-img">
                     <span class="last"></span>
                     <ul id="ul">
-                        <li class="left">
-                            <a href="/NewsPage"><img src="~/1.png" alt=""></a><div></div>
-                        </li>
-                        <li class="center">
-                            <a href="/NewsPage"><img src="~/2.png" alt=""></a><div></div>
-                        </li>
-                        <li class="right">
-                            <a href="/NewsPage"><img src="~/3.png" alt=""></a><div></div>
-                        </li>
-                        <li class="after1">
-                            <a href="/NewsPage"><img src="~/4.png" alt=""></a><div></div>
-                        </li>
-                        <li class="after2">
-                            <a href="/NewsPage"><img src="~/5.png" alt=""></a><div></div>
-                        </li>
+                    @for (int i = 0; i < ViewBag.TopicNews.Count; i++)
+                    {
+                        @if (i == 0)
+                        {
+                            <li class="left">
+                                <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
+                                </a>
+                            </li>
+                        }
+                        @if (i == 1)
+                        {
+                            <li class="center">
+                                <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
+                                </a>
+                            </li>
+                        }
+                        @if (i == 2)
+                        {
+                            <li class="right">
+                                <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
+                                </a>
+                            </li>
+                        }
+                        @if (i == 3)
+                        {
+                            <li class="after1">
+                                <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
+                                </a>
+                            </li>
+                        }
+                        @if (i == 4)
+                        {
+                            <li class="after2">
+                                <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
+                                </a>
+                            </li>
+                        }
+                    }
                     </ul>
                     <span class="next"></span>
                 </div>
@@ -48,11 +78,14 @@
             </div>
         </div>
         <div class="News-list">
+        @foreach (var item in ViewBag.dyObject)
+        {
             <div class="col-lg-4 col-sm-6 card">
-                    <a href="/NewsPage"><img src="~/1.png"></a>
-                    <a href="/NewsPage"><h4>123456789123456789111111111111111111111111</h4></a>
+                <a href="/NewsPage/?Column=@ViewBag.column&Id=@item.Id"><img src="~/@item.Picture"></a>
+                <a href="/NewsPage/?Column=@ViewBag.column&Id=@item.Id"><h4>@item.Title</h4></a>
             </div>
-            <div class="col-lg-4 col-sm-6 card">
+        }
+@*            <div class="col-lg-4 col-sm-6 card">
                 <img  src="~/2.png">
                 <h4>1234567891234567845678912345674567891234567</h4>
             </div>
@@ -71,7 +104,7 @@
             <div class="col-lg-4 col-sm-6 card">
                 <img src="~/1.png">
                 <h4>123456789123456789111111111111111111111111</h4>
-            </div>
+            </div>*@
         </div>
     </body>
 </html>

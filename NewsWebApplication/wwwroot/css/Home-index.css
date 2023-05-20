@@ -172,8 +172,10 @@ a:active {
     .NewsList .List ul li .NewsImg {
         float: left;
         height: 90%;
+        width:240px;
         display: inline-flex;
         margin: auto 0;
+        overflow:hidden
     }
     /*具体的新闻列表*/
         .NewsList .List ul li .News {
@@ -204,7 +206,7 @@ a:active {
                 padding-top:30px;
             }
                 .NewsList .List ul li .News .Bottom .Share {
-                    padding-left:450px;
+                    padding-left:400px;
                     margin-right:50px;
                 }
 

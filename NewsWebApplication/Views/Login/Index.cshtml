@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+        @if (TempData["Message"] != null)
+     {
+         <script type="text/javascript">
+             window.onload = function () {
+                 alert("@TempData["Message"]");
+             };
+         </script>
+     }
+}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="~/css/Login-index.css" asp-append-version="true" />
+    <script src="/lib//jquery/dist/jquery.min.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <!-- Sign Up -->
+        <div class="container__form container--signup">
+            <form action="#" class="form" id="form1">
+                <h2 class="form__title">注册</h2>
+                <input type="text" placeholder="用户名" name="SignupName" id="SignupName" class="input" />
+                <input type="email" placeholder="邮箱" class="input" name="SignupEmail" id="SignupEmail" />
+                <input type="password" placeholder="密码" class="input" name="SignupPwd" id="SignupPwd" />
+                <button class="btn" onclick="Signup()">注册</button>
+            </form>
+        </div>
+
+        <!-- Sign In -->
+        <div class="container__form container--signin">
+            <form action="/Login/Login"  method="POST" class="form" id="form2">
+                <h2 class="form__title">登录</h2>
+                <input type="text" placeholder="用户名" class="input" name="loginName" id="loginName" />
+                <input type="password" placeholder="密码" class="input" name="loginPwd" id="loginPwd" />
+                <a href="#" class="link">忘记密码</a>
+                <button class="btn" type="submit" onclick="submit()">登录</button>
+                @*<input type="submit" value="Sign In" class="btn"/>*@
+            </form>
+        </div>
+
+        <!-- Overlay -->
+        <div class="container__overlay">
+            <div class="overlay">
+                <div class="overlay__panel overlay--left">
+                    @*<input type="submit" value="Sign In" class="btn"/>*@
+                    <button class="btn" id="signIn">登录</button>
+                </div>
+                <div class="overlay__panel overlay--right">
+                    <button class="btn" id="signUp">注册</button>
+                    @*<input type="submit" value="Sign Up" class="btn" id="signUp" />*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signInBtn = document.getElementById("signIn");
+        const signUpBtn = document.getElementById("signUp");
+        const fistForm = document.getElementById("form1");
+        const secondForm = document.getElementById("form2");
+        const container = document.querySelector(".container");
+
+        signInBtn.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+            console.log("left")
+        });
+
+        signUpBtn.addEventListener("click", () => {
+            container.classList.add("right-panel-active");
+        });
+
+        fistForm.addEventListener("submit", (e) => e.preventDefault());
+        secondForm.addEventListener("submit", (e) => e.preventDefault());
+
+        function Signup(){
+            var name = document.getElementById("SignupName").value
+            var password = document.getElementById("SignupPwd").value
+            var email = document.getElementById("SignupEmail").value
+            $.ajax({
+                url: "/Login/Signup",
+                type:"POST",
+                data:{name:name, password:password, email:email},
+                sucess: function(msg){
+                   alert("Signup successfully")
+                }
+            })
+            alert("注册成功")
+        }
+
+    </script>
+</body>
+</html>

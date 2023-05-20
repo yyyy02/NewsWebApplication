@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string UserName = (string)ViewData["Username"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,13 +20,14 @@
     @*退出*@
     <link rel="stylesheet" href="~/fonts/font_ob2yxq5jxn/iconfont.css" />
     <script src="/lib//jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/layer-v3.5.1//src/layer.js"></script>
     <script src="/js/site.js"></script>
 </head>
 <body>
     <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
                 <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsWebApplication</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">新闻</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -33,16 +37,16 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li class="nav-item">
+@*                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
+                            </li>*@
                             <li class="container-fluid">
                                 <form class="bs-example bs-example-form" role="form" style="margin:8px">
                                     <div class="col-lg-auto">
                                         <div class="input-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="search-input">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button">
+                                                <button class="btn btn-default" type="button" onclick="">
                                                     <span class="glyphicon glyphicon-search"></span>
                                                 </button>
                                             </span>
@@ -53,19 +57,27 @@
                         </ul>
                     </div>
                     <div class="User-info">
-                        <button type="button" class="btn btn-default btn-lg" onclick="showInfoBox()" @*onblur="hideInfoBox()*@">
-                            <span class="glyphicon glyphicon-user"></span> User
-                        </button>
-                        <div class="User-infobox">
-                            <strong style="font-size:20px;">啊啊啊</strong>
-                            <ul>
-                                <li><i class="iconfont" style="margin-right:5px">&#xe6a4</i>个人信息</li>
-                                <li><i class="iconfont" style="margin-right:5px">&#xeb7b</i>历史记录</li>
-                                <li><i class="iconfont" style="margin-right:5px">&#xe738</i>用户反馈</li>
-                            </ul>
-                            <div class="logout"><i class="iconfont" style="margin-right:5px">&#xe892</i>退出</div>
+                        @if (ViewData["UserName"] != null){
+                            <button type="button" class="btn btn-default btn-lg" onclick="showInfoBox()">
+                            <span class="glyphicon glyphicon-user"></span>@UserName
+                            </button>        
+                            <div class="User-infobox">
+                                <strong style="font-size:20px;">@UserName</strong>
+                                <ul>
+                                    <li onclick="check()"><i class="iconfont" style="margin-right:5px">&#xe6a4</i>个人信息</li>
+                                    <li onclick="history()"><i class="iconfont" style="margin-right:5px">&#xeb7b</i>历史记录</li>
+                                    <li onclick="feedback()"><i class="iconfont" style="margin-right:5px">&#xe738</i>用户反馈</li>
+                                </ul>
+                                <div class="logout" onclick="Logout()"><i class="iconfont" style="margin-right:5px">&#xe892</i>退出</div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Login" asp-action="Index">
+                            <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-user"></span></button>
+                        </a>
+                    }
+                </div>
                 </div>
             </nav>
             @*选择标签导航栏*@
@@ -78,7 +90,7 @@
                                     <div class="Tag-List-Pill"><a href="/Home/Channel/?column=科技" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">科技</a></div>
                                 </li>
                                 <li class="nav-item">
-                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=旅行" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">旅游</a></div>
+                                    <div class="Tag-List-Pill"><a href="/Home/Channel/?column=旅游" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">旅游</a></div>
                                 </li>
                                 <li class="nav-item">
                                     <div class="Tag-List-Pill"><a href="/Home/Channel/?column=时尚" class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">时尚</a></div>

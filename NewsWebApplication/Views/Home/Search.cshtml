@@ -1,36 +1,52 @@
 ﻿@{
+    string UserName = (string)ViewData["Username"];
 }
-<div>未搜索到相关内容</div>
-<div class="List">
-    <ul>
-        <li>
-            <div class="NewsImg">
-                <img src="./1.png">
-            </div>
-            <div class="News">
-                <div class="Title">世界卫生组织：还没到宣布新观大流行结束的时候</div>
-                <div class="Description">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</div>
-                <div class="Bottom">
-                    <div class="PulishTime">1小时前</div>
-                    <div class="Share">
-                        <i class="iconfont">&#xe624</i>
-                        <span>分享</span>
-                    </div>
-                    <div class="Views">
-                        <i class="iconfont">&#xe627</i>
-                        <span>395</span>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
-        <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li><div class="rankIcon">6</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li><div class="rankIcon">7</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li><div class="rankIcon">8</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li><div class="rankIcon">9</div><a href="#">江泽民伟大光辉的一生</a></li>
-        <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
-    </ul>
-</div>
+@*<div>未搜索到相关内容</div>*@
+<html lang="en">
+<head>
+    <script src="/lib//jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/Home-Search.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="NewsList">
+        <div class="List">
+            <ul>   
+                @if (ViewBag.SearchNews != null)
+                {
+                    @for (int i = 0; i < ViewBag.SearchNews.Count; i++)
+                    {
+                        <a class="RecList"
+                   href="/NewsPage/?Column=@ViewBag.SearchNews[i].Column&Id=@ViewBag.SearchNews[i].Id"
+                   style="display:true">
+                        <li>
+                            <div class="NewsImg">
+                                <img src="~/@ViewBag.SearchNews[i].Picture">
+                            </div>
+                            <div class="News">
+                                <div class="Title">@ViewBag.SearchNews[i].Title</div>
+                                <div class="Description">@ViewBag.SearchNews[i].Content</div>
+                                <div class="Bottom">
+                                    <div class="PulishTime">@ViewBag.SearchNews[i].Date</div>
+                                    <div class="Share">
+                                        <i class="iconfont">&#xe624</i>
+                                        <span>分享</span>
+                                    </div>
+                                    <div class="Views">
+                                        <i class="iconfont">&#xe627</i>
+                                        <span>@ViewBag.SearchNews[i].Heat</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        </a>
+                    }
+                }
+            </ul>
+            @if (ViewBag.SearchNews.Count == 0)
+            {
+             <div style="text-align:center;font-size:25px">未搜索到相关内容</div>   
+            }
+        </div>
+    </div>
+</body>
+</html>

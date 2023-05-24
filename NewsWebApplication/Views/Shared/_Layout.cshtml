@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="~/fonts/font_1qiart5hja3/iconfont.css" />
     @*退出*@
     <link rel="stylesheet" href="~/fonts/font_ob2yxq5jxn/iconfont.css" />
+    @*刷新*@
+    <link rel="stylesheet" href="~/fonts/font_pc91p14nhe/iconfont.css" />
+    @*向上*@
+    <link rel="stylesheet" href="~/fonts/font_lgwa9q5jwc/iconfont.css" />
+    <link rel="stylesheet" href="~/fonts/font_hoe6is2bej7/iconfont.css" />
+    <link rel="stylesheet" href="~/fonts/font_t495264e78/iconfont.css" />
+    <link rel="stylesheet" href="~/fonts/font_o0i0id7rif/iconfont.css" />
     <script src="/lib//jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/layer-v3.5.1//src/layer.js"></script>
     <script src="/js/site.js"></script>
@@ -27,7 +34,7 @@
     <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
                 <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">新闻</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">快捷新闻</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -35,20 +42,22 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" style="min-width:50px" asp-area="" asp-controller="Home" asp-action="Index">主页</a>
                             </li>
 @*                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>*@
                             <li class="container-fluid">
-                                <form class="bs-example bs-example-form" role="form" style="margin:8px">
+                                <form class="bs-example bs-example-form" role="form" style="margin:8px" action="/Home/Search" method="post">
                                     <div class="col-lg-auto">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="search-input">
+                                        <input type="text" class="form-control" id="search" name="search">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" onclick="">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                                </button>
+                                                @*<a asp-controller="Home" asp-action="Search">*@
+                                                <input class="btn btn-default" type="submit" value="搜索">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                                </input>
+                                                @*</a>*@
                                             </span>
                                         </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
@@ -128,7 +137,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - NewsWebApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - 快捷新闻 -
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

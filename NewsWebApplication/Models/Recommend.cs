@@ -7,5 +7,7 @@
         public int? NewId { get; set; }
         public int? Recommendation { get; set; }
 
+        public DateTime? ReadTime { get; set; }
+
     }
 }

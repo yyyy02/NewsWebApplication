@@ -28,6 +28,7 @@
                         {
                             <li class="left">
                                 <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <div class="NewTitle">@ViewBag.TopicNews[i].Title</div>
                                     <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
                                 </a>
                             </li>
@@ -36,6 +37,7 @@
                         {
                             <li class="center">
                                 <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <div class="NewTitle" >@ViewBag.TopicNews[i].Title</div>
                                     <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
                                 </a>
                             </li>
@@ -44,6 +46,7 @@
                         {
                             <li class="right">
                                 <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <div class="NewTitle" >@ViewBag.TopicNews[i].Title</div>
                                     <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
                                 </a>
                             </li>
@@ -52,6 +55,7 @@
                         {
                             <li class="after1">
                                 <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <div class="NewTitle">@ViewBag.TopicNews[i].Title</div>
                                     <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
                                 </a>
                             </li>
@@ -60,6 +64,7 @@
                         {
                             <li class="after2">
                                 <a href="/NewsPage/?Column=@ViewBag.TopicNews[i].Column&Id=@ViewBag.TopicNews[i].Id">
+                                    <div class="NewTitle">@ViewBag.TopicNews[i].Title</div>
                                     <img src="~/@ViewBag.TopicNews[i].Picture" alt="">
                                 </a>
                             </li>
@@ -81,7 +86,7 @@
         @foreach (var item in ViewBag.dyObject)
         {
             <div class="col-lg-4 col-sm-6 card">
-                <a href="/NewsPage/?Column=@ViewBag.column&Id=@item.Id"><img src="~/@item.Picture"></a>
+                <a href="/NewsPage/?Column=@ViewBag.column&Id=@item.Id" style="height:200px;overflow:hidden"><img src="~/@item.Picture"></a>
                 <a href="/NewsPage/?Column=@ViewBag.column&Id=@item.Id"><h4>@item.Title</h4></a>
             </div>
         }

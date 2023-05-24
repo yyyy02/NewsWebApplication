@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="~/fonts/font_lgwa9q5jwc/iconfont.css" />
         <link rel="stylesheet" href="~/fonts/font_hoe6is2bej7/iconfont.css" />
         <link rel="stylesheet" href="~/fonts/font_t495264e78/iconfont.css" />
+        <link rel="stylesheet" href="~/fonts/font_o0i0id7rif/iconfont.css" />
     </head>
     <body>
 @*    <div class="text-center">
@@ -55,26 +56,12 @@
                                     {
                                         <li>
                                             <a href="/NewsPage/?Column=@ViewBag.PicNews[i].NewColumn&Id=@ViewBag.PicNews[i].NewId">
-                                                <img src="~/@ViewBag.PicNews[i].NewPicture" alt="">
+                                                <div class="NewTitle" style="display:none">@ViewBag.PicNews[i].NewTitle</div>
+                                                <img style="width:45vw;height:335px" src="~/@ViewBag.PicNews[i].NewPicture" alt="">
                                             </a>   
                                         </li>                                    
                                     }
                                 }
-@*                                <li>
-                                    <img src="./1.png">
-                                </li>
-                                <li>
-                                    <img src="./2.png">
-                                </li>
-                                <li>
-                                    <img src="./3.png">
-                                </li>
-                                <li>
-                                    <img src="./4.png">
-                                </li>
-                                <li>
-                                    <img src="./5.png">
-                                </li>*@
                             </ul>
                             <div class="ol_list">
                                 <ol>
@@ -93,6 +80,9 @@
                                 {
                                     <div class="after_img">
                                         <a href="/NewsPage/?Column=@ViewBag.PicNews[i].NewColumn&Id=@ViewBag.PicNews[i].NewId">
+                                            <div class="NewTitle" style="position:absolute;overflow-wrap: normal;width:212px;background: rgba(255,255,255,0.5);">
+                                                @ViewBag.PicNews[i].NewTitle
+                                            </div>
                                             <img src="~/@ViewBag.PicNews[i].NewPicture" alt="">
                                         </a>
                                     </div>
@@ -128,44 +118,74 @@
 
                 <div class="NewsList">
                     <div class="Header">
-                        <div style="font-family:STKaiti;font-size:2vw;margin-top:-25px">热点精选</div>
+                        <div style="font-family:STKaiti;font-size:2vw;margin-top:-25px">新闻推荐</div>
                     </div>
                     <div class="List">
                         <ul>
                             @if (ViewBag.RecommNews != null)
                             {
-                                @foreach (var item in ViewBag.RecommNews)
+                                @for (int i = 0; i < ViewBag.RecommNews.Count; i++)
                                 {
-                                    <a href="/NewsPage/?Column=@item.NewColumn&Id=@item.NewId">
-                                    <li>
-                                        <div class="NewsImg">
-                                            <img src="~/@item.NewPicture">
-                                        </div>
-                                        <div class="News">
-                                            <div class="Title">@item.NewTitle</div>
-                                            <div class="Description">@item.NewContent</div>
-                                            <div class="Bottom">
-                                                <div class="PulishTime">@item.NewDate</div>
-                                                <div class="Share">
-                                                    <i class="iconfont">&#xe624</i>
-                                                    <span>分享</span>
+                                    @if (i <= 3)
+                                    {
+                                        <a class="RecList" 
+                                            href="/NewsPage/?Column=@ViewBag.RecommNews[i].NewColumn&Id=@ViewBag.RecommNews[i].NewId"
+                                            style="display:true"
+                                        >                                          
+                                            <li>
+                                                <div class="NewsImg">
+                                                    <img src="~/@ViewBag.RecommNews[i].NewPicture">
                                                 </div>
-                                                <div class="Views">
-                                                    <i class="iconfont">&#xe627</i>
-                                                    <span>@item.NewHeat</span>
+                                                <div class="News">
+                                                    <div class="Title">@ViewBag.RecommNews[i].NewTitle</div>
+                                                    <div class="Description">@ViewBag.RecommNews[i].NewContent</div>
+                                                    <div class="Bottom">
+                                                        <div class="PulishTime">@ViewBag.RecommNews[i].NewDate</div>
+                                                        <div class="Share">
+                                                            <i class="iconfont">&#xe624</i>
+                                                            <span>分享</span>
+                                                        </div>
+                                                        <div class="Views">
+                                                            <i class="iconfont">&#xe627</i>
+                                                            <span>@ViewBag.RecommNews[i].NewHeat</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    </a>
+                                            </li>
+                                        </a>
+                                    } else if (i > 3)
+                                    {
+                                        <a class="RecList"
+                                            href="/NewsPage/?Column=@ViewBag.RecommNews[i].NewColumn&Id=@ViewBag.RecommNews[i].NewId"
+                                            style="display:none">
+                                            <li>
+                                                <div class="NewsImg">
+                                                    <img src="~/@ViewBag.RecommNews[i].NewPicture">
+                                                </div>
+                                                <div class="News">
+                                                    <div class="Title">@ViewBag.RecommNews[i].NewTitle</div>
+                                                    <div class="Description">@ViewBag.RecommNews[i].NewContent</div>
+                                                    <div class="Bottom">
+                                                        <div class="PulishTime">@ViewBag.RecommNews[i].NewDate</div>
+                                                        <div class="Share">
+                                                            <i class="iconfont">&#xe624</i>
+                                                            <span>分享</span>
+                                                        </div>
+                                                        <div class="Views">
+                                                            <i class="iconfont">&#xe627</i>
+                                                            <span>@ViewBag.RecommNews[i].NewHeat</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </a>
+                                    }
+
                                 }
                             }
-                            <li><div class="rankIcon-num2">2</div><a href="#">水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</a></li>
-                            <li><div class="rankIcon-num3">3</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li><div class="rankIcon">4</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li><div class="rankIcon">5</div><a href="#">江泽民伟大光辉的一生</a></li>
-                            <li style="border-bottom-style:none;"><div class="rankIcon">10</div><a href="#">江泽民伟大光辉的一生</a></li>
                         </ul>
+                        <div class="Showmore" onclick="Showmore()"><i class="iconfont">&#xe727;</i>加载更多</div>
+                        <div class="Nomore" style="text-align:center;font:normal 20px/30px Microsoft Yahei;padding-top:30px;display:none">暂无更多</div>
                     </div>
                 </div>
             </div>

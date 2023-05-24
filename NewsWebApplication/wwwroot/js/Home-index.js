@@ -18,23 +18,31 @@ var getTime = function () {
 	document.querySelector("#time").innerHTML = time
 }
 
+
+
+
 //轮播图
 $(function () {
 	var index = 0;
 	var timer = null;
 	var option = $('.Cachart_container>ul>li').length;
 	var imgwidth = $('.Cachart_container ul li').width();
-	var $li = $('<li><img src="./1.png" alt=""></li>')
+
+	var $li = $('.Cachart_container ul li')[0];
 	$('.Cachart_container>ul').append($li);
 
 
 
 	go();
+	$(".Cachart_container").mouseleave(function () {
+		$(".Cachart_container ul .NewTitle").fadeOut("slow");
+	})
 	$(".Cachart_container").hover(function () {
 		clearInterval(timer)
+		$(".Cachart_container ul .NewTitle").fadeIn("slow");
+		/*$(".Cachart_container ul .NewTitle").css("display", "");*/
 	}, function () {
 		go();
-
 	})
 	function go() {
 		$(window).resize(function () {
@@ -46,6 +54,8 @@ $(function () {
 				$(".Cachart_container ul").stop().animate({
 					left: -imgwidth * index - 20 * index + 'px'
 				})
+				$(".Cachart_container ul .NewTitle").fadeOut("");
+				/*$(".Cachart_container ul .NewTitle").css("display", "none");*/
 				console.log("success")
 			}
 			if (index == option) {

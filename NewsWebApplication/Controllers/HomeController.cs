@@ -7,6 +7,7 @@ using EntityFrameworkDemo.DB;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using Microsoft.AspNetCore.CookiePolicy;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace NewsWebApplication.Controllers
 {
@@ -24,6 +25,7 @@ namespace NewsWebApplication.Controllers
 
             //get the current user
             ViewData["Username"] = HttpContext.Session.GetString("UserName");
+            //Console.WriteLine(HttpContext.Session.GetInt32("UserId"));
             using DBContext context = new DBContext();
             //HttpClient http = new HttpClient();
             //var str = "";
@@ -46,7 +48,20 @@ namespace NewsWebApplication.Controllers
             if (HttpContext.Session.GetString("UserName") != null)
             {
                 //List<string> ReList = RecommendationList();
-                List<string> ReList = new List<string> {"1","2","4","5","6","7","8","9","10" };
+                List<string> ReList = new List<string> { "1", "2", "4", "5", "6", "7", "8", "9", "10" };
+                List<dynamic> ReCommList = new List<dynamic>();
+                ReCommList = GetNews(ReList);
+                ViewBag.RecommNews = ReCommList;
+            }
+            else {
+                Random random = new Random();
+                List<string> ReList = new List<string>();
+                while(ReList.Count <= 40) { 
+                    String temp = random.Next(1, 915).ToString();
+                    if (!ReList.Contains(temp)) {
+                        ReList.Add(temp);
+                    }   
+                }
                 List<dynamic> ReCommList = new List<dynamic>();
                 ReCommList = GetNews(ReList);
                 ViewBag.RecommNews = ReCommList;
@@ -117,6 +132,36 @@ namespace NewsWebApplication.Controllers
         }
         public IActionResult Search(string search)
         {
+            using DBContext context = new DBContext();
+            if (search != null) {
+                var SelectNews = (from New in context.New
+                                  where New.NewTitle.Contains(search)
+                                  select new
+                                  {
+                                      New.Id,
+                                      New.NewColumn,
+                                      New.NewContent,
+                                      New.NewTitle,
+                                      New.Date,
+                                      New.NewPicture,
+                                      New.NewHeat
+                                  }).ToList();
+                List<dynamic> Newsdata = new List<dynamic>();
+                foreach (var item in SelectNews)
+                {
+                    dynamic dyObject = new ExpandoObject();
+                    dyObject.Id = item.Id;
+                    dyObject.Title = item.NewTitle;
+                    dyObject.Date = item.Date;
+                    dyObject.Content = item.NewContent;
+                    dyObject.Picture = item.NewPicture;
+                    dyObject.Column = item.NewColumn;
+                    dyObject.Heat = item.NewHeat;
+                    Newsdata.Add(dyObject);
+                }
+                ViewBag.SearchNews = Newsdata;
+            }
+            ViewData["Username"] = HttpContext.Session.GetString("UserName");
             return View();
         }
 
@@ -150,30 +195,29 @@ namespace NewsWebApplication.Controllers
         }
 
         public List<string> RecommendationList() {
-            string Path = @"D:\Desktop\dist\Re.exe";
+            string Path = @"D:\Desktop\alg\dist\Reg.exe";
             string Li = "";
             Process p = new Process();
             p.StartInfo.RedirectStandardOutput = true;
             //p.StartInfo.CreateNoWindow = true;
             p.StartInfo.FileName = Path;
             p.StartInfo.UseShellExecute = false;
-            p.StartInfo.Arguments = @"4";
+            p.StartInfo.Arguments = @"5";
             p.OutputDataReceived += (sender, argsx) =>
             {
                 Li += argsx.Data;
-                Console.WriteLine(Li);
                 //Console.WriteLine(argsx.Data);
             };
             p.Start();
             p.BeginOutputReadLine();
-            p.WaitForExit(10000);
+            p.WaitForExit(20000);
             p.Close();
             //Console.WriteLine(result.Substring(1,2));
             //Process pro = Process.Start(Path, "4");
             //pro.WaitForExit();
             //int Re = pro.ExitCode;
             //pro.Close();
-            Li = Li.Substring(23,Li.Length - 24);
+            Li = Li.Substring(1, Li.Length-2);
             var list = Li.Split(',').ToList();
             return list;
         }

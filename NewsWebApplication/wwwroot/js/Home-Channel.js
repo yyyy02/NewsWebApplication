@@ -74,10 +74,12 @@ for (let i = 0; i < classes.length; i++) {
 //});
 $('.Pic-list').mouseover(function () {
     $('.last,.next').css("display", "block");
+    $(".roll-img .last ul .center").fadeIn("slow");
     clearInterval(timer);
 });
 $('.Pic-list').mouseout(function () {
     $('.last,.next').css("display", "none");
+    $(".roll-img .last ul .center").fadeOut("slow");
     clearInterval(timer);
     timer = setInterval(function () {
         before();

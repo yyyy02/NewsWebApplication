@@ -89,6 +89,23 @@ function feedback() {
         layer.close(index);
     });
 }
+
+function Showmore() {
+    var RecommList = document.getElementsByClassName("RecList")
+    var m = 0
+    for (var i = 1; i < RecommList.length; i++) {
+        if (RecommList[i].style.display == "none" && RecommList[i - 1].style.display != "none") {
+            RecommList[i].style.display = ""
+            m++;
+        } if (m == 5) {
+            break;
+        } if (i == RecommList.length - 1) {
+            document.getElementsByClassName("Showmore")[0].style.display = "none"
+            document.getElementsByClassName("Nomore")[0].style.display = ""
+        }
+        
+    }
+}
 /*历史记录*/
 function history() {
     layer.open({
@@ -101,21 +118,32 @@ function history() {
         area: [400 + 'px', 500 + 'px'],
         resize: false,
     })
-    $(".layui-layer-content").append("<ul class=\"history\"><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li></ul>")
+    $.ajax({
+        type: "POST",
+        url: "/NewsPage/GetHistory",
+        data: { UserId: 4 },
+        success: function (data) {
+            for (var i = 0; i < data.d.length; i++) {
+
+                $(".layui-layer-content").append("<ul class=\"history\"><li><div class=\"rankIcon\"></div><a href='/NewsPage/?Column=" + data.d[i].newColumn + "&Id=" + data.d[i].id + "'>" + data.d[i].newTitle + "</a></div></li>")
+            }
+        }
+    })
+    /*$(".layui-layer-content").append("<ul class=\"history\"><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li></ul>")*/
 }
 
-///*搜索*/
-//function Search() {
-//    var search = document.getElementById('search-input').value
-//    $.ajax({
-//        type: "POST",
-//        url: "/Home/Search",
-//        data: { search: search },
-//        success: function (msg) {
-//            window.location.href = "@Url.Action("Search","Home")";
-//        }
-//    })
-//}
+/*搜索*/
+function Search() {
+    var search = document.getElementById('search-input').value
+    $.ajax({
+        type: "POST",
+        url: "/Home/Search",
+        data: { search: search },
+        success: function (msg) {
+            /*window.location.href = "@Url.Action("Search","Home")";*/
+        }
+    })
+}
 
 
 /*查看新闻的具体内容*/

@@ -11,6 +11,19 @@ namespace NewsWebApplication.Controllers
         public IActionResult Index(/*List<dynamic> New, */string Column, int Id)
         {
             ViewData["Username"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
+            int UserId = 0;
+            using DBContext context = new DBContext();
+            var userid = from User in context.User
+                         where User.UserName == HttpContext.Session.GetString("UserName")
+                         select new
+                         {
+                             User.Id
+                         };
+            foreach (var i in userid)
+            {
+                UserId = i.Id;
+            }
             List<dynamic> Newsdata = GetData(Column, Id);
             ViewBag.dyObject = Newsdata;
             List<dynamic> CommentsList = GetComments(Id);
@@ -21,16 +34,9 @@ namespace NewsWebApplication.Controllers
             ViewBag.HeatNews = HeatsList;
             List<dynamic> TopicsList = TopicList(Column);
             ViewBag.TopicNews = TopicsList;
-            using DBContext context = new DBContext();
-            var userid = from User in context.User
-                         where User.UserName == HttpContext.Session.GetString("UserName")
-                         select new
-                         {
-                             User.Id
-                         };
-            foreach (var i in userid)
-            {
-                ViewData["UserId"] = i.Id;
+            if (UserId != 0) {
+                AddHistory(Id, UserId);
+                //List<dynamic> HistoryList = GetHistory(UserId);
             }
             AddHeat(Id);
             return View();
@@ -108,17 +114,17 @@ namespace NewsWebApplication.Controllers
 
             //推荐
             var name = HttpContext.Session.GetString("UserName");
-            var UserId = 0;
-            var userid = from User in context.User
-                         where User.UserName == HttpContext.Session.GetString("UserName")
-                         select new
-                         {
-                             User.Id
-                         };
-            foreach (var i in userid)
-            {
-                UserId = i.Id;
-            }
+            var UserId = HttpContext.Session.GetInt32("UserId");
+            //var userid = from User in context.User
+            //             where User.UserName == HttpContext.Session.GetString("UserName")
+            //             select new
+            //             {
+            //                 User.Id
+            //             };
+            //foreach (var i in userid)
+            //{
+            //    UserId = i.Id;
+            //}
             if (name != null) { 
                 Recommend Re = context.Recommend.Where(x => x.NewId == NewId && x.UserId == UserId).FirstOrDefault();
                 if (Re != null)
@@ -199,6 +205,41 @@ namespace NewsWebApplication.Controllers
             return TopicNews;
         }
 
+
+        public void AddHistory(int NewId, int UserId) {
+            using DBContext context = new DBContext();
+            Recommend R = context.Recommend.Where(x => x.UserId == UserId && x.NewId == NewId).FirstOrDefault();
+            if (R != null) { 
+                R.ReadTime= DateTime.Now;
+            }
+            context.SaveChanges();
+        }
+
+        public ActionResult GetHistory(int UserId) {
+            using DBContext context = new DBContext();
+            var data = (from New in context.New
+                        join Recommend in context.Recommend
+                        on New.Id equals Recommend.NewId
+                        where Recommend.UserId == UserId && Recommend.ReadTime != null
+                        orderby Recommend.ReadTime descending
+                        select new
+                        {
+                            New.Id,
+                            New.NewColumn,
+                            New.NewTitle
+                        }).ToList();
+            List<dynamic> HistoryNews = new List<dynamic>();
+            foreach (var item in data)
+            {
+                dynamic dyObject = new ExpandoObject();
+                dyObject.Id = item.Id;
+                dyObject.Title = item.NewTitle;
+                dyObject.Column = item.NewColumn;
+                HistoryNews.Add(dyObject);
+            }
+            Console.WriteLine(data);
+            return Json(new {d = data });
+        }
         public void Like(int NewId, int UserId) {
             using DBContext context = new DBContext();
             Recommend R = context.Recommend.Where(x => x.UserId == UserId && x.NewId == NewId).FirstOrDefault();

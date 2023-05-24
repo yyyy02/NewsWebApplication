@@ -53,6 +53,11 @@ a:active {
                 margin: 0;
                 padding: 0 10px 0 10px;
             }
+                .CachartAndHeatList .Cachart_container ul li .NewTitle {
+                    position: absolute;
+                    background: rgba(255,255,255,0.5);
+                    min-width:90% 
+                }
         /*轮播图下面的点*/
         .CachartAndHeatList .Cachart_container .ol_list {
             width: calc((45vw + 20px)/3.5);
@@ -205,10 +210,33 @@ a:active {
                 padding-left:20px;
                 padding-top:30px;
             }
-                .NewsList .List ul li .News .Bottom .Share {
-                    padding-left:400px;
-                    margin-right:50px;
+                .NewsList .List ul li .News .Bottom .PulishTime {
+                    min-width:100px;
                 }
+                .NewsList .List ul li .News .Bottom .Share {
+                    padding-left: 400px;
+                    margin-right: 50px;
+                }
+/*查看更多*/
+.NewsList .List .Showmore {
+    width:1000px;
+    text-align: center;
+    cursor: pointer;
+    font: normal 15px Microsoft Yahei;
+    padding-top: 30px;
+    margin: 30px 0 40px;
+    border: 1px solid #e5e5e5;
+    padding-bottom: 20px;
+}
+    .NewsList .List .Showmore:hover {
+        color: red;
+        border: 1px solid red;
+        -webkit-transition: transform 0.3s;
+    }
+    .NewsList .List .Showmore i {
+        transform: rotate(360edg);
+        
+    }
 
 
         /*右边部分（fixed_bar*/

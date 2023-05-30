@@ -143,6 +143,35 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        /*历史记录*/
+function history() {
+    var UserId = '@ViewData["UserId"]';
+    console.log(UserId);
+    layer.open({
+        title: '历史记录',
+        scrollbar: false,
+        area: 'auto',
+        maxHeight: 100,
+        minHeight: 50,
+        maxmin: true,
+        area: [400 + 'px', 500 + 'px'],
+        resize: false,
+    })
+    $.ajax({
+        type: "POST",
+        url: "/NewsPage/GetHistory",
+        data: { UserId: UserId },
+        success: function (data) {
+            for (var i = 0; i < data.d.length; i++) {
+
+                $(".layui-layer-content").append("<ul class=\"history\"><li><div class=\"rankIcon\"></div><a href='/NewsPage/?Column=" + data.d[i].newColumn + "&Id=" + data.d[i].id + "'>" + data.d[i].newTitle + "</a></div></li>")
+            }
+        }
+    })
+    /*$(".layui-layer-content").append("<ul class=\"history\"><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li><li><div class=\"rankIcon\"></div><a>江泽民伟大光辉的一生</a></div></li></ul>")*/
+}
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

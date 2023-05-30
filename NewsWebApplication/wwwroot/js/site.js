@@ -83,7 +83,14 @@ function feedback() {
         title: '反馈',
         //area: ['800px', '350px'] //自定义文本域宽高
     }, function (value, index, elem) {
-
+        $.ajax({
+            type: "POST",
+            url: "/Home/Feedback",
+            data: { feedback: value },
+            success: function (data) {
+                console.log("123");
+            }
+        })
         alert('反馈成功'); //得到value
         console.log("反馈：",value)
         layer.close(index);
@@ -108,6 +115,7 @@ function Showmore() {
 }
 /*历史记录*/
 function history() {
+    var UserId = '@ViewData["UserId"]';
     layer.open({
         title: '历史记录',
         scrollbar: false,
@@ -121,7 +129,7 @@ function history() {
     $.ajax({
         type: "POST",
         url: "/NewsPage/GetHistory",
-        data: { UserId: 4 },
+        data: { UserId: UserId },
         success: function (data) {
             for (var i = 0; i < data.d.length; i++) {
 

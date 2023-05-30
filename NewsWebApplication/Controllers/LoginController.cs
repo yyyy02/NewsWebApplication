@@ -30,6 +30,8 @@ namespace NewsWebApplication.Controllers
                 HttpContext.Session.SetString("UserName", loginName);
                 //Console.WriteLine(loginName);
                 return RedirectToAction("Index", "Home");
+            } else if(loginName =="admin" && loginPwd == "123456"){
+                return RedirectToAction("Admin", "Home");
             }
             else
             {
@@ -43,6 +45,7 @@ namespace NewsWebApplication.Controllers
             HttpContext.Session.Remove("UserName");
             return RedirectToAction("Index", "Home");
     }
+
         public IActionResult Signup(string name,string password,string email) {
             using DBContext context = new DBContext();
             context.Add(new User
@@ -73,6 +76,7 @@ namespace NewsWebApplication.Controllers
                 {
                     UserId = UserId,
                     NewId = id.Id,
+                    Recommendation = 0
                 });
             }
             context.SaveChanges();

@@ -1,0 +1,356 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <script src="/lib//jquery/dist/jquery.min.js"></script>
+    <script src="/js/Home-admin.js"></script>
+    <script type="text/javascript" src="/layer-v3.5.1//src/layer.js"></script>
+    @*用户按钮*@
+    <link rel="stylesheet" href="~/fonts/font_xfw3vy59ccs/iconfont.css" />
+    @*用户反馈*@
+    <link rel="stylesheet" href="~/fonts/font_f6lun5jq3l/iconfont.css" />
+    <link rel="stylesheet" href="~/fonts/font_1ijjs8qm21h/iconfont.css" />
+    <link rel="stylesheet" href="~/fonts/font_f9pryxz5kyu/iconfont.css" /> 
+    <link rel="stylesheet" href="~/css/Home-Admin.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div class="content">
+        <!--左侧导航栏-->
+        <div class="content-left">
+            <div class="left-title" style="text-align:center;padding-top:20px">
+                <a href="#">新闻管理后台</a>
+            </div>
+
+            <!--水平线-->
+@*            <div class="seg"></div>*@
+
+            <!--菜单栏导航-->
+            <div class="nav">
+                <!--每一个菜单栏项-->
+                <div class="nav-menu">
+                    <!--主标题-->
+                    <div class="nav-title" onclick="Showuser()" id="User" style="color:rgb(69,141,255)"><i class="iconfont" style="padding-left:15px">&#xe6a4</i>&nbsp;&nbsp;&nbsp;&nbsp;用户管理</div>
+                </div>
+
+                <!--每一个菜单栏项-->
+                <div class="nav-menu">
+                    <!--主标题-->
+                    <div class="nav-title" onclick="Shownew()" id="New"><i class="iconfont" style="font-size:20px;padding-left:15px" >&#xebca</i>&nbsp;&nbsp;&nbsp;新闻管理</div>
+                </div>
+
+                <!--每一个菜单栏项-->
+                <div class="nav-menu">
+                    
+                    <!--主标题-->
+                    <div class="nav-title" onclick="Showfeedback()" id="Feedback"><i class="iconfont" style="padding-left:15px">&#xe738</i>&nbsp;&nbsp;&nbsp;&nbsp;反馈管理</div>
+                </div>
+            </div>
+
+            <!--水平线-->
+            <div class="seg"></div>
+        </div>
+
+        <!--右侧内容区-->
+        <div class="content-right">
+            <div style="max-width:915px;min-height:50px;background-color:white;margin:7px 0px 0px -14px;padding:14px 10px 0px 10px;">
+                <input class="btn btn-default" style="padding-left:100px;">
+                <i class="iconfont" style="cursor:pointer;margin-right:50px;">&#xe651</i>
+                <button  id="btnAdd" onclick="addUser()">添加</button>
+                <button id="delAll" onclick="delAllUsers()"> 全部删除</button>
+                <div style="float:right;font-size:20px">
+                    <i class="iconfont" style="padding-left:15px">&#xe6a4</i>&nbsp;&nbsp;Admin
+                </div>
+            </div>
+            <div class="conter" id="UserList" style="display:true;margin-top:10px;">
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>邮箱</th>
+                            <th>密码</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="UserTable" style="display:true">
+                        @foreach(var item in ViewBag.User)
+                            {
+                                <tr>
+                                <td>@item.Id</td>
+                                <td>@item.UserName</td> 
+                                <td>@item.Email</td>
+                                <td>@item.Password</td>
+                                <td>
+                                    <button  type="button" onclick="changeUser()">修改</button> 
+                                    <button>删除</button>
+                                </td>
+                                </tr>
+                            }
+                    </tbody>
+
+                </table>
+                <div id="divAddStudent" class="hidden">
+                    <h2>学生信息</h2>
+                    <form action="#" id="addStudentForm">
+                        <p>学号：<input type="text" name="stuNo" id="stuNo"> </p>
+                        <p>姓名：<input type="text" name="tuName" id="stuName"> </p>
+                        <p>年龄：<input type="text" name="stuAge" id="stuAge"> </p>
+                        <p>班级：<input type="text" name="stuClass" id="stuClass"> </p>
+                        <p>    <button id="btnAddData" type="button">添加</button>  <button id="btnCancel">取消</button></p>
+                    </form>
+                </div>
+
+            </div>
+            <div class="conter" id="NewList" style="display:none">
+                @*<div style="float:right;padding: 10px 50px 15px 0px;">
+                    <button id="btnAdd" >添加</button>
+                    <button id="delAll" onclick="delAllNews()"> 全部删除</button>
+                </div>*@
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>新闻标题</th>
+                            <th>新闻内容</th>
+                            <th>新闻时间</th>
+                            <th>新闻栏目</th>
+                            <th>新闻热度</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="NewTable" style="display:true">
+                        @foreach (var item in ViewBag.News)
+                        {
+                            <tr>
+                                <td>@item.NewId</td>
+                                <td><p style="overflow:hidden;width:200px;height:60px;text-overflow:ellipsis">@item.NewTitle</p></td>
+                                <td><p style="overflow:hidden;width:200px;height:60px;text-overflow:ellipsis">@item.NewContent</p></td>
+                                <td>@item.NewDate</td>
+                                <td>@item.NewColumn</td>
+                                <td>@item.NewHeat</td>
+                                <td>
+                                    <button type="button">修改</button>
+                                    <button>删除</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <div id="divAddStudent" class="hidden">
+                    <h2>学生信息</h2>
+                    <form action="#" id="addStudentForm">
+                        <p>学号：<input type="text" name="stuNo" id="stuNo"> </p>
+                        <p>姓名：<input type="text" name="tuName" id="stuName"> </p>
+                        <p>年龄：<input type="text" name="stuAge" id="stuAge"> </p>
+                        <p>班级：<input type="text" name="stuClass" id="stuClass"> </p>
+                        <p>    <button id="btnAddData" type="button">添加</button>  <button id="btnCancel">取消</button></p>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <div class="conter" id="FeedbackList" style="display:none">
+                @*<div style="float:right;padding: 10px 50px 15px 0px;">
+@*                    <button id="btnAdd" >添加</button>
+                    <button id="delAll" onclick="delAllNews()"> 全部删除</button>
+                </div>*@
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>反馈内容</th>
+                        </tr>
+                    </thead>
+                    <tbody class="NewTable" style="display:true">
+                        @foreach (var item in ViewBag.Feedback)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Feedback</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <div id="divAddStudent" class="hidden">
+                    <h2>学生信息</h2>
+                    <form action="#" id="addStudentForm">
+                        <p>学号：<input type="text" name="stuNo" id="stuNo"> </p>
+                        <p>姓名：<input type="text" name="tuName" id="stuName"> </p>
+                        <p>年龄：<input type="text" name="stuAge" id="stuAge"> </p>
+                        <p>班级：<input type="text" name="stuClass" id="stuClass"> </p>
+                        <p>    <button id="btnAddData" type="button">添加</button>  <button id="btnCancel">取消</button></p>
+                    </form>
+                </div>
+
+
+            </div>
+           @* <script type="text/javascript">
+                var studentArr = [  //数组
+                    { "stuNo": "001", "stuName": "小红", "stuAge": 16, "stuClass": "218" },
+                    { "stuNo": "002", "stuName": "小米", "stuAge": 15, "stuClass": "219" },
+                    { "stuNo": "003", "stuName": "小明", "stuAge": 15, "stuClass": "218" },
+                    { "stuNo": "004", "stuName": "小蓝", "stuAge": 16, "stuClass": "218" },
+                    { "stuNo": "005", "stuName": "小紫", "stuAge": 15, "stuClass": "219" },
+                    { "stuNo": "006", "stuName": "小青", "stuAge": 15, "stuClass": "218" },
+                    { "stuNo": "007", "stuName": "小白", "stuAge": 16, "stuClass": "218" },
+                    { "stuNo": "008", "stuName": "小黄", "stuAge": 15, "stuClass": "219" },
+                    { "stuNo": "009", "stuName": "小黑", "stuAge": 15, "stuClass": "218" }
+                ];
+                var stuNoOper = "";
+                dataStudent();
+                $("btnAdd").onclick = AddStudent;
+                $("zhezhao").onclick = function () {
+                    model("divAddStudent", "hidden");
+                };
+
+
+                $("btnCancel").onclick = function () {
+                    model("divAddStudent", "hidden");
+                };
+                $("btnAddData").onclick = addStudentData;
+                //添加学生
+                function addStudentData() {
+                    var stuNo = $("stuNo").value;
+                    var stuName = $("stuName").value;
+                    var stuAge = $("stuAge").value;
+                    var stuClass = $("stuClass").value;
+                    if (stuNo == "") {
+                        alert("学号不能为空");
+                        return;
+                    } else if (stuName == "") {
+                        alert("姓名不能为空");
+                        return;
+                    } else if (stuAge == "") {
+                        alert("年龄不能为空");
+                        return;
+                    } else if (stuClass == "") {
+                        alert("班级不能为空");
+                        return;
+                    }
+                    if (stuNoOper == "") {
+                        if (checkStudentNo(stuNo)) {
+                            alert("当前学号已经存在");
+                            return;
+                        }
+                        var obj = { "stuNo": stuNo, "stuName": stuName, "stuAge": stuAge, "stuClass": stuClass };
+                        studentArr.push(obj);
+                        if (confirm("添加成功，是否继续添加")) {
+                            $("stuNo").value = "";
+                            $("stuName").value = "";
+                            $("stuAge").value = "";
+                            $("stuClass").value = "";
+                            dataStudent();
+                        } else {
+                            model("divAddStudent", "hidden");
+                            dataStudent();
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < studentArr.length; i++) {
+                            if (studentArr[i].stuNo == stuNoOper) {
+                                studentArr[i].stuName = stuName;
+                                studentArr[i].stuAge = stuAge;
+                                studentArr[i].stuClass = stuClass;
+                                alert("修改成功");
+                                model("divAddStudent", "hidden");
+                                dataStudent();
+                                break;
+                            }
+                        }
+                    }
+
+
+                }
+
+                //修改学生
+                function update(stuno) {
+                    console.log(123)
+                    var stuObj = getStudentBystuNO(stuno);
+                    if (stuObj) {
+                        stuNoOper = stuno;
+                        model("divAddStudent");
+                        $("stuNo").value = stuObj.stuNo;
+                        $("stuName").value = stuObj.stuName;
+                        $("stuAge").value = stuObj.stuAge;
+                        $("stuClass").value = stuObj.stuClass;
+                    } else {
+                        alert("输入有误")
+                    }
+                }
+                //获取修改学生信息
+                function getStudentBystuNO(stuno) {
+                    for (var i = 0; i < studentArr.length; i++) {
+                        if (studentArr[i].stuNo == stuno) {
+                            return studentArr[i];
+                        }
+                    }
+                    return null;
+                }
+                //添加，接收用户数据
+                function AddStudent() {
+                    stuNoOper = "";
+                    model("divAddStudent");
+                }
+                //数据显示
+                function dataStudent() {
+                    var tbstudent = $("tbStudent");
+                    tbstudent.innerHTML = "";
+                    for (var i = 0; i < studentArr.length; i++) {
+                        tbstudent.innerHTML += `<tr><td>${studentArr[i].stuNo}</td><td>${studentArr[i].stuName}</td><td>${studentArr[i].stuAge}</td><td>${studentArr[i].stuClass}</td>
+                                <td><button onclick = 'del(${studentArr[i].stuNo})'>删除</button><button onclick = 'update(${studentArr[i].stuNo})'>修改</button></td></tr>`
+                    }
+                }
+                //删除
+                function del(stuno) {
+                    if (confirm("确定要删除吗")) {
+                        for (var i = 0; i < studentArr.length; i++) {
+                            if (studentArr[i].stuNo == stuno) {
+                                studentArr.splice(i, 1);
+                                alert("删除成功");
+                                dataStudent();
+                                break;
+                            }
+                        }
+                    }
+                }
+                //删除全部
+                function delAll() {
+                    if (confirm("确定要删除吗")) {
+                        studentArr = [];
+                        dataStudent();
+                    }
+                }
+                //验证学号
+                function checkStudentNo(stuNo) {
+                    for (var i = 0; i < studentArr.length; i++) {
+                        if (studentArr[i].stuNo == stuNo) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                //选择id
+                function $(id) {
+                    return document.getElementById(id);
+                }
+
+
+            </script>*@
+        </div>
+    </div>
+</body>
+</html>

@@ -242,6 +242,7 @@ namespace NewsWebApplication.Controllers
         }
         public void Like(int NewId, int UserId) {
             using DBContext context = new DBContext();
+            Console.WriteLine($"{NewId} {UserId}");
             Recommend R = context.Recommend.Where(x => x.UserId == UserId && x.NewId == NewId).FirstOrDefault();
             if (R != null)
             {

@@ -25,6 +25,7 @@ namespace NewsWebApplication.Controllers
 
             //get the current user
             ViewData["Username"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
             //Console.WriteLine(HttpContext.Session.GetInt32("UserId"));
             using DBContext context = new DBContext();
             //HttpClient http = new HttpClient();
@@ -37,7 +38,17 @@ namespace NewsWebApplication.Controllers
             //result.EnsureSuccessStatusCode();
             //Task<string> task = result.Content.ReadAsStringAsync();
             //Console.WriteLine(task.Result);
-
+            int UserId = 0;
+            var userid = from User in context.User
+                         where User.UserName == HttpContext.Session.GetString("UserName")
+                         select new
+                         {
+                             User.Id
+                         };
+            foreach (var i in userid)
+            {
+                UserId = i.Id;
+            }
             //HttpClient http = new HttpClient();
             //string url = "http://192.168.1.102:5000/";
             //Task<string> task = http.GetStringAsync(url);
@@ -47,8 +58,8 @@ namespace NewsWebApplication.Controllers
             ViewBag.RecommNews = null;
             if (HttpContext.Session.GetString("UserName") != null)
             {
-                //List<string> ReList = RecommendationList();
-                List<string> ReList = new List<string> { "1", "2", "4", "5", "6", "7", "8", "9", "10" };
+                List<string> ReList = RecommendationList(UserId);
+                //List<string> ReList = new List<string> { "1", "2", "4", "5", "6", "7", "8", "9", "10" };
                 List<dynamic> ReCommList = new List<dynamic>();
                 ReCommList = GetNews(ReList);
                 ViewBag.RecommNews = ReCommList;
@@ -74,10 +85,78 @@ namespace NewsWebApplication.Controllers
             return View();
         }
 
+        public IActionResult Admin()
+        {
+            using DBContext context = new DBContext();
+            var data = (from User in context.User
+                        select new
+                        {
+                            User.Id,
+                            User.UserName,
+                            User.Email,
+                            User.Password,
+                        }).ToList();
+            List<dynamic> UserList = new List<dynamic>();
+            foreach (var item in data)
+            {
+                dynamic dyObject = new ExpandoObject();
+                dyObject.Id = item.Id;
+                dyObject.UserName = item.UserName;
+                dyObject.Email = item.Email;
+                dyObject.Password = item.Password;
+                UserList.Add(dyObject);
+            }
+            ViewBag.User = UserList;
+
+            List<dynamic> News = new List<dynamic>();
+            var data2 = (from New in context.New
+                            select new
+                            {
+                                New.Id,
+                                New.NewColumn,
+                                New.NewContent,
+                                New.NewTitle,
+                                New.Date,
+                                New.NewPicture,
+                                New.NewHeat
+                            }).ToList();
+                foreach (var item in data2)
+                {
+                    dynamic dyObject = new ExpandoObject();
+                    dyObject.NewId = item.Id;
+                    dyObject.NewColumn = item.NewColumn;
+                    dyObject.NewTitle = item.NewTitle;
+                    dyObject.NewContent = item.NewContent;
+                    dyObject.NewDate = item.Date;
+                    dyObject.NewPicture = item.NewPicture;
+                    dyObject.NewHeat = item.NewHeat;
+                    News.Add(dyObject);
+                }
+            ViewBag.News = News;
+
+            var data3 = (from Feedback in context.Feedback
+                        select new
+                        {
+                            Feedback.Id,
+                            Feedback.FeedbackContent,
+                        }).ToList();
+            List<dynamic> FeedbackList = new List<dynamic>();
+            foreach (var item in data3)
+            {
+                dynamic dyObject = new ExpandoObject();
+                dyObject.Id = item.Id;
+                dyObject.Feedback = item.FeedbackContent;
+                FeedbackList.Add(dyObject);
+            }
+            ViewBag.Feedback = FeedbackList;
+            return View();
+        }
+
         public IActionResult Channel(string column)
         {
             ViewBag.column = column;
             ViewData["Username"] = HttpContext.Session.GetString("UserName");
+            ViewData["UserId"] = HttpContext.Session.GetInt32("UserId");
             using DBContext context = new DBContext();
             var data = (from New in context.New
                         where New.NewColumn == column
@@ -194,7 +273,7 @@ namespace NewsWebApplication.Controllers
             return HeatNews;
         }
 
-        public List<string> RecommendationList() {
+        public List<string> RecommendationList(int UserId) {
             string Path = @"D:\Desktop\alg\dist\Reg.exe";
             string Li = "";
             Process p = new Process();
@@ -202,7 +281,8 @@ namespace NewsWebApplication.Controllers
             //p.StartInfo.CreateNoWindow = true;
             p.StartInfo.FileName = Path;
             p.StartInfo.UseShellExecute = false;
-            p.StartInfo.Arguments = @"5";
+            String m = UserId.ToString();
+            p.StartInfo.Arguments = m;
             p.OutputDataReceived += (sender, argsx) =>
             {
                 Li += argsx.Data;
@@ -210,7 +290,7 @@ namespace NewsWebApplication.Controllers
             };
             p.Start();
             p.BeginOutputReadLine();
-            p.WaitForExit(20000);
+            p.WaitForExit(15000);
             p.Close();
             //Console.WriteLine(result.Substring(1,2));
             //Process pro = Process.Start(Path, "4");
@@ -254,6 +334,27 @@ namespace NewsWebApplication.Controllers
                 }
             }
             return ReCommList;
+        }
+
+        public void changeUser(string name,string password,string email) {
+            using DBContext context = new DBContext();
+            User u = context.User.Where(x => x.UserName == name).FirstOrDefault();
+            if (u != null)
+            {
+                u.UserName = name;
+                u.Password= password;
+                u.Email= email;
+            }
+            context.SaveChanges();
+        }
+        public ActionResult Feedback(string feedback) {
+            using DBContext context = new DBContext();
+            context.Add(new Feedback
+            {
+                FeedbackContent = feedback,
+            });
+            context.SaveChanges();
+            return Json(new { d = "评论成功" });
         }
     }
 }

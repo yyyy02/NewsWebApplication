@@ -10,6 +10,8 @@ public class DBContext : DbContext
     public DbSet<New> New { get; set; }
     public DbSet<Comment> Comment { get; set; }
 
+    public DbSet<Feedback> Feedback { get; set; }
+
     public DbSet<Recommend> Recommend { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

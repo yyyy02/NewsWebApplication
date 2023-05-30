@@ -1,0 +1,165 @@
+﻿body {
+}
+
+.content {
+    width: 99vw;
+    height: 97vh;
+    /*text-align:center;*/
+    justify-content:center;
+    /*margin-top:50px;*/
+}
+
+.content-left {
+    width: 19%;
+    min-height: 100%x;
+    background-color: white;
+    float: left;
+    
+}
+
+.content-right {
+    width: 78%;
+    height: 100%;
+    background-color: rgb(245,248,250);
+    float: left;
+    
+}
+
+.left-title {
+    width: 100%;
+    height: 55px;
+}
+
+    .left-title > a {
+        display: block;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        /*text-align: center;*/
+        color: black;
+        font-family: "微软雅黑";
+        font-size:20px;
+        font-weight:bolder;
+        /*去掉a下默认下划线*/
+        text-decoration: none;
+    }
+
+/*分割线*/
+.seg {
+    height: 1px;
+    width: 95%;
+    background-color: black;
+}
+
+.nav {
+    /*上下5,左右0*/
+    margin: 5px 0;
+}
+
+/*菜单项主标题*/
+.nav-title {
+    height: 50px;
+    width: 100%;
+    color: black;
+    /*text-align: center;*/
+    line-height: 40px;
+    cursor: pointer;
+}
+
+/*子标题内容区*/
+.nav-content {
+    width: 100%;
+    height: 100%;
+    background-color: #0C1119;
+   
+}
+
+
+/*内容区*/
+.content-right {
+    padding-left: 20px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2) inset;
+    border-radius: 2px;
+    /*text-align: center;*/
+}
+table {
+    width: 98%;
+    border:1px solid gray;
+    padding:15px;
+}
+
+    table th, table td {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    table tbody tr:nth-child(2n) {
+        background-color: white;
+    }
+
+    table td {
+        text-align: center;
+    }
+
+.conter {
+    max-width: 960px;
+    max-height:600px;
+    overflow:scroll
+    /*margin: 30px auto;*/
+}
+
+button {
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #00A398;
+    color: white;
+    border: none;
+    border-radius: 15%;
+    cursor: pointer;
+}
+
+#divAddStudent {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px 50px;
+}
+
+    #divAddStudent h2 {
+        margin-bottom: 30px;
+    }
+
+    #divAddStudent p {
+        margin-top: 10px;
+    }
+
+#zhezhao {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+tbody:empty:before {
+    content: "当前没有学生，快去添加吧"
+}

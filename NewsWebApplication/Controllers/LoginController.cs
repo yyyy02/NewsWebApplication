@@ -7,6 +7,14 @@ namespace NewsWebApplication.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly SynchronizationService _synchronizationService;
+        private readonly ILogger<HomeController> _logger;
+        public static string GlobalData { get; set; }
+        public LoginController(ILogger<HomeController> logger, SynchronizationService synchronizationService)
+        {
+            _logger = logger;
+            _synchronizationService = synchronizationService;
+        }
         public IActionResult Index()
         {
             return View();
@@ -26,6 +34,7 @@ namespace NewsWebApplication.Controllers
                 foreach (var i in userid)
                 {
                     HttpContext.Session.SetInt32("UserId", i.Id);
+                    GlobalData = i.Id.ToString();
                 }
                 HttpContext.Session.SetString("UserName", loginName);
                 //Console.WriteLine(loginName);

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/fonts/font_f6lun5jq3l/iconfont.css" />
     <link rel="stylesheet" href="~/fonts/font_1ijjs8qm21h/iconfont.css" />
     <link rel="stylesheet" href="~/fonts/font_f9pryxz5kyu/iconfont.css" /> 
+    <link rel="stylesheet" href="~/fonts/font_yombzqde5yl/iconfont.css" />
     <link rel="stylesheet" href="~/css/Home-Admin.css" asp-append-version="true" />
 
 </head>
@@ -55,6 +56,11 @@
                     <!--主标题-->
                     <div class="nav-title" onclick="Showfeedback()" id="Feedback"><i class="iconfont" style="padding-left:15px">&#xe738</i>&nbsp;&nbsp;&nbsp;&nbsp;反馈管理</div>
                 </div>
+                <div class="nav-menu">
+
+                    <!--主标题-->
+                    <div class="nav-title" onclick="ShowComment()" id="Comment"><i class="iconfont" style="padding-left:15px">&#xe8cb</i>&nbsp;&nbsp;&nbsp;&nbsp;评论管理</div>
+                </div>
             </div>
 
             <!--水平线-->
@@ -63,7 +69,7 @@
 
         <!--右侧内容区-->
         <div class="content-right">
-            <div style="max-width:915px;min-height:50px;background-color:white;margin:7px 0px 0px -14px;padding:14px 10px 0px 10px;">
+            <div style="max-width:915px;min-height:50px;background-color:white;margin:7px 0px 0px -14px;padding:14px 10px 0px 10px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);">
                 <input class="btn btn-default" style="padding-left:100px;">
                 <i class="iconfont" style="cursor:pointer;margin-right:50px;">&#xe651</i>
                 <button  id="btnAdd" onclick="addUser()">添加</button>
@@ -73,6 +79,37 @@
                 </div>
             </div>
             <div class="conter" id="UserList" style="display:true;margin-top:10px;">
+
+                <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-left:0px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cd</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>用户</div>
+                            <div style="font-weight:1000">@ViewBag.User.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cc</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>新闻</div>
+                            <div style="font-weight:1000">@ViewBag.News.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8ca</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>反馈</div>
+                            <div style="font-weight:1000">@ViewBag.Feedback.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-right:15px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cb</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>评论</div>
+                            <div style="font-weight:1000">@ViewBag.Comment.Count</div>
+                        </div>
+                    </div>
+                </div>
                 <table border="1" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
@@ -92,8 +129,8 @@
                                 <td>@item.Email</td>
                                 <td>@item.Password</td>
                                 <td>
-                                    <button  type="button" onclick="changeUser()">修改</button> 
-                                    <button>删除</button>
+                                    <button  type="button" onclick="changeUser()">修改</button>
+                                    <button onclick="delete1()">删除</button>
                                 </td>
                                 </tr>
                             }
@@ -112,11 +149,41 @@
                 </div>
 
             </div>
-            <div class="conter" id="NewList" style="display:none">
+            <div class="conter" id="NewList" style="display:none;margin-top:10px;">
                 @*<div style="float:right;padding: 10px 50px 15px 0px;">
                     <button id="btnAdd" >添加</button>
                     <button id="delAll" onclick="delAllNews()"> 全部删除</button>
                 </div>*@
+                                <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-left:0px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cd</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>用户</div>
+                            <div style="font-weight:1000">@ViewBag.User.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cc</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>新闻</div>
+                            <div style="font-weight:1000">@ViewBag.News.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8ca</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>反馈</div>
+                            <div style="font-weight:1000">@ViewBag.Feedback.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-right:15px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cb</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>评论</div>
+                            <div style="font-weight:1000">@ViewBag.Comment.Count</div>
+                        </div>
+                    </div>
+                </div>
                 <table border="1" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
@@ -140,8 +207,8 @@
                                 <td>@item.NewColumn</td>
                                 <td>@item.NewHeat</td>
                                 <td>
-                                    <button type="button">修改</button>
-                                    <button>删除</button>
+                                    <button type="button" onclick="changeNew()">修改</button>
+                                    <button onclick="delete1(@item.NewId)">删除</button>
                                 </td>
                             </tr>
                         }
@@ -162,11 +229,41 @@
 
             </div>
 
-            <div class="conter" id="FeedbackList" style="display:none">
+            <div class="conter" id="FeedbackList" style="display:none;margin-top:10px;">
                 @*<div style="float:right;padding: 10px 50px 15px 0px;">
 @*                    <button id="btnAdd" >添加</button>
                     <button id="delAll" onclick="delAllNews()"> 全部删除</button>
                 </div>*@
+                <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-left:0px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cd</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>用户</div>
+                            <div style="font-weight:1000">@ViewBag.User.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cc</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>新闻</div>
+                            <div style="font-weight:1000">@ViewBag.News.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8ca</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>反馈</div>
+                            <div style="font-weight:1000">@ViewBag.Feedback.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-right:15px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cb</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>评论</div>
+                            <div style="font-weight:1000">@ViewBag.Comment.Count</div>
+                        </div>
+                    </div>
+                </div>
                 <table border="1" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
@@ -196,6 +293,76 @@
                     </form>
                 </div>
 
+
+            </div>
+            <div class="conter" id="CommentList" style="display:none;margin-top:10px;">
+
+                <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-left:0px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cd</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>用户</div>
+                            <div style="font-weight:1000">@ViewBag.User.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cc</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>新闻</div>
+                            <div style="font-weight:1000">@ViewBag.News.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8ca</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>反馈</div>
+                            <div style="font-weight:1000">@ViewBag.Feedback.Count</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;min-width:210px;min-height:100px;background-color:white;margin-right:15px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)">
+                        <i class="iconfont" style="font-size:40px;color:rgb(1,101,255);padding:30px 10px 0px 40px;">&#xe8cb</i>
+                        <div style="padding:30px 0px 0px 0px;">
+                            <div>评论</div>
+                            <div style="font-weight:1000">@ViewBag.Comment.Count</div>
+                        </div>
+                    </div>
+                </div>
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>用户编号</th>
+                            <th>新闻编号</th>
+                            <th>评论内容</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="UserTable" style="display:true">
+                        @foreach (var item in ViewBag.Comment)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.UserId</td>
+                                <td>@item.NewId</td>
+                                <td>@item.CommentDetail</td>
+                                <td>
+                                    <button>删除</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <div id="divAddStudent" class="hidden">
+                    <h2>学生信息</h2>
+                    <form action="#" id="addStudentForm">
+                        <p>学：<input type="text" name="stuNo" id="stuNo"> </p>
+                        <p>姓名：<input type="text" name="tuName" id="stuName"> </p>
+                        <p>年龄：<input type="text" name="stuAge" id="stuAge"> </p>
+                        <p>班级：<input type="text" name="stuClass" id="stuClass"> </p>
+                        <p>    <button id="btnAddData" type="button">添加</button>  <button id="btnCancel">取消</button></p>
+                    </form>
+                </div>
 
             </div>
            @* <script type="text/javascript">

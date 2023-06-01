@@ -9,15 +9,18 @@ using System;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+
 namespace NewsWebApplication.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SynchronizationService _synchronizationService;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SynchronizationService synchronizationService)
         {
             _logger = logger;
+            _synchronizationService = synchronizationService;
         }
 
         public IActionResult Index()
@@ -38,6 +41,12 @@ namespace NewsWebApplication.Controllers
             //result.EnsureSuccessStatusCode();
             //Task<string> task = result.Content.ReadAsStringAsync();
             //Console.WriteLine(task.Result);
+
+            //_synchronizationService.GetData();
+
+
+
+
             int UserId = 0;
             var userid = from User in context.User
                          where User.UserName == HttpContext.Session.GetString("UserName")
@@ -56,7 +65,12 @@ namespace NewsWebApplication.Controllers
 
             List<dynamic> heat = HeatList();
             ViewBag.RecommNews = null;
-            if (HttpContext.Session.GetString("UserName") != null)
+            Random random = new Random();
+
+            //Get the Recommend list by Re.exe
+            List<string> globalValue = GetCsv();
+
+            if (HttpContext.Session.GetString("UserName") != null && globalValue == null)
             {
                 List<string> ReList = RecommendationList(UserId);
                 //List<string> ReList = new List<string> { "1", "2", "4", "5", "6", "7", "8", "9", "10" };
@@ -64,21 +78,33 @@ namespace NewsWebApplication.Controllers
                 ReCommList = GetNews(ReList);
                 ViewBag.RecommNews = ReCommList;
             }
+            else if (HttpContext.Session.GetString("UserName") != null && globalValue != null) {
+                List<dynamic> ReCommList = new List<dynamic>();
+                ReCommList = GetNews(globalValue);
+                ViewBag.RecommNews = ReCommList;
+            }
             else {
-                Random random = new Random();
                 List<string> ReList = new List<string>();
-                while(ReList.Count <= 40) { 
+                while (ReList.Count <= 40) {
                     String temp = random.Next(1, 915).ToString();
                     if (!ReList.Contains(temp)) {
                         ReList.Add(temp);
-                    }   
+                    }
                 }
                 List<dynamic> ReCommList = new List<dynamic>();
                 ReCommList = GetNews(ReList);
                 ViewBag.RecommNews = ReCommList;
             }
             //获取轮播图新闻
-            List<string> PicList = new List<string> { "11", "12", "13", "14", "15", "16", "17","18" };
+            List<string> PicList = new List<string> { };
+            while (PicList.Count <= 8)
+            {
+                String temp = random.Next(1, 915).ToString();
+                if (!PicList.Contains(temp))
+                {
+                    PicList.Add(temp);
+                }
+            }
             List<dynamic> PicList1 = GetNews(PicList);
             ViewBag.PicNews = PicList1;
             ViewBag.HeatNews = heat;
@@ -110,36 +136,36 @@ namespace NewsWebApplication.Controllers
 
             List<dynamic> News = new List<dynamic>();
             var data2 = (from New in context.New
-                            select new
-                            {
-                                New.Id,
-                                New.NewColumn,
-                                New.NewContent,
-                                New.NewTitle,
-                                New.Date,
-                                New.NewPicture,
-                                New.NewHeat
-                            }).ToList();
-                foreach (var item in data2)
-                {
-                    dynamic dyObject = new ExpandoObject();
-                    dyObject.NewId = item.Id;
-                    dyObject.NewColumn = item.NewColumn;
-                    dyObject.NewTitle = item.NewTitle;
-                    dyObject.NewContent = item.NewContent;
-                    dyObject.NewDate = item.Date;
-                    dyObject.NewPicture = item.NewPicture;
-                    dyObject.NewHeat = item.NewHeat;
-                    News.Add(dyObject);
-                }
+                         select new
+                         {
+                             New.Id,
+                             New.NewColumn,
+                             New.NewContent,
+                             New.NewTitle,
+                             New.Date,
+                             New.NewPicture,
+                             New.NewHeat
+                         }).ToList();
+            foreach (var item in data2)
+            {
+                dynamic dyObject = new ExpandoObject();
+                dyObject.NewId = item.Id;
+                dyObject.NewColumn = item.NewColumn;
+                dyObject.NewTitle = item.NewTitle;
+                dyObject.NewContent = item.NewContent;
+                dyObject.NewDate = item.Date;
+                dyObject.NewPicture = item.NewPicture;
+                dyObject.NewHeat = item.NewHeat;
+                News.Add(dyObject);
+            }
             ViewBag.News = News;
 
             var data3 = (from Feedback in context.Feedback
-                        select new
-                        {
-                            Feedback.Id,
-                            Feedback.FeedbackContent,
-                        }).ToList();
+                         select new
+                         {
+                             Feedback.Id,
+                             Feedback.FeedbackContent,
+                         }).ToList();
             List<dynamic> FeedbackList = new List<dynamic>();
             foreach (var item in data3)
             {
@@ -149,6 +175,26 @@ namespace NewsWebApplication.Controllers
                 FeedbackList.Add(dyObject);
             }
             ViewBag.Feedback = FeedbackList;
+
+            var data4 = (from Comment in context.Comment
+                         select new
+                         {
+                             Comment.Id,
+                             Comment.NewId,
+                             Comment.UserId,
+                             Comment.CommentDetail
+                         }).ToList();
+            List<dynamic> CommentList = new List<dynamic>();
+            foreach (var item in data4)
+            {
+                dynamic dyObject = new ExpandoObject();
+                dyObject.Id = item.Id;
+                dyObject.NewId = item.NewId;
+                dyObject.UserId = item.UserId;
+                dyObject.CommentDetail = item.CommentDetail;
+                CommentList.Add(dyObject);
+            }
+            ViewBag.Comment = CommentList;
             return View();
         }
 
@@ -183,15 +229,15 @@ namespace NewsWebApplication.Controllers
             ViewBag.dyObject = Newsdata;
 
             var data2 = (from New in context.New
-                        orderby New.NewHeat descending
-                        where New.NewColumn == column
-                        select new
-                        {
-                            New.Id,
-                            New.NewColumn,
-                            New.NewTitle,
-                            New.NewPicture,
-                        }).ToList();
+                         orderby New.NewHeat descending
+                         where New.NewColumn == column
+                         select new
+                         {
+                             New.Id,
+                             New.NewColumn,
+                             New.NewTitle,
+                             New.NewPicture,
+                         }).ToList();
             List<dynamic> TopicNews = new List<dynamic>();
             foreach (var item in data2)
             {
@@ -273,6 +319,30 @@ namespace NewsWebApplication.Controllers
             return HeatNews;
         }
 
+        public List<string> GetCsv() {
+            string Path = @"D:\Desktop\alg\dist\Re\Re.exe";
+            string Li = "";
+            Process p = new Process();
+            p.StartInfo.RedirectStandardOutput = true;
+            //p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.FileName = Path;
+            p.StartInfo.UseShellExecute = false;
+            p.OutputDataReceived += (sender, argsx) =>
+            {
+                Li += argsx.Data;
+                //Console.WriteLine(argsx.Data);
+            };
+            p.Start();
+            p.BeginOutputReadLine();
+            while (Li.Length == 0)
+            {
+                p.WaitForExit(1000);
+            }
+            p.Close();
+            Li = Li.Substring(1, Li.Length - 2);
+            var list = Li.Split(',').ToList();
+            return list;
+        }
         public List<string> RecommendationList(int UserId) {
             string Path = @"D:\Desktop\alg\dist\Reg.exe";
             string Li = "";
@@ -290,17 +360,20 @@ namespace NewsWebApplication.Controllers
             };
             p.Start();
             p.BeginOutputReadLine();
-            p.WaitForExit(15000);
+            while (Li.Length == 0) {
+                p.WaitForExit(1000);
+            }
             p.Close();
             //Console.WriteLine(result.Substring(1,2));
             //Process pro = Process.Start(Path, "4");
             //pro.WaitForExit();
             //int Re = pro.ExitCode;
             //pro.Close();
-            Li = Li.Substring(1, Li.Length-2);
+            Li = Li.Substring(1, Li.Length - 2);
             var list = Li.Split(',').ToList();
             return list;
         }
+
 
         public List<dynamic> GetNews(List<string> ReList)
         {
@@ -336,17 +409,18 @@ namespace NewsWebApplication.Controllers
             return ReCommList;
         }
 
-        public void changeUser(string name,string password,string email) {
+        public void changeUser(string name, string password, string email) {
             using DBContext context = new DBContext();
             User u = context.User.Where(x => x.UserName == name).FirstOrDefault();
             if (u != null)
             {
                 u.UserName = name;
-                u.Password= password;
-                u.Email= email;
+                u.Password = password;
+                u.Email = email;
             }
             context.SaveChanges();
         }
+
         public ActionResult Feedback(string feedback) {
             using DBContext context = new DBContext();
             context.Add(new Feedback
@@ -356,5 +430,6 @@ namespace NewsWebApplication.Controllers
             context.SaveChanges();
             return Json(new { d = "评论成功" });
         }
+
     }
 }

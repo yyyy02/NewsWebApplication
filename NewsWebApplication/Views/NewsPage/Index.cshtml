@@ -73,27 +73,31 @@
                         <h2>网友评论</h2>
                             @if (ViewData["UserName"] == null)
                             {
-                                <a asp-action="Index" asp-controller="Login">
-                            <div class="like">
-                                <i class="iconfont">&#xe761;</i>
-                                <div>喜欢</div>
-                            </div>
-                            <div class="dislike">
-                                <i class="iconfont">&#xeb7d;</i>
-                                <div>不喜欢</div>
-                            </div>
+                            <a asp-action="Index" asp-controller="Login">
+                                <div style="display:flex">
+                                    <div class="like" style="margin-right:30px">
+                                        <i class="iconfont">&#xe761;</i>
+                                        <div>喜欢</div>
+                                    </div>
+                                    <div class="dislike">
+                                        <i class="iconfont">&#xeb7d;</i>
+                                        <div>不喜欢</div>
+                                    </div>
+                                </div>
                                 </a>
                             }
                             else
                             {
-                             <div class="like" onclick="like()">
-                                <i class="iconfont">&#xe761;</i>
-                                <div>喜欢</div>
+                            <div style="display:flex">
+                                <div class="like" onclick="like()" style="margin-right:30px">
+                                    <i class="iconfont">&#xe761;</i>
+                                    <div>喜欢</div>
+                                </div>
+                                <div class="dislike" onclick="dislike()">
+                                    <i class="iconfont">&#xeb7d;</i>
+                                    <div>不喜欢</div>
                             </div>
-                            <div class="dislike" onclick="dislike()">
-                                <i class="iconfont">&#xeb7d;</i>
-                                <div>不喜欢</div>
-                            </div>                               
+                            </div>                          
                             }
                             <div class="header-number">@ViewBag.dyComments.Count 条评论</div>
                     </div>

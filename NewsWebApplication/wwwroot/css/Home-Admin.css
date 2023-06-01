@@ -111,7 +111,7 @@ table {
 button {
     padding: 5px 10px;
     margin: 5px;
-    background-color: #00A398;
+    background-color: rgb(69,141,255);
     color: white;
     border: none;
     border-radius: 15%;

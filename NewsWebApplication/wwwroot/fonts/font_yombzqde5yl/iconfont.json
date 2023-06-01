@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "35543501",
+      "name": "报告",
+      "font_class": "baogao",
+      "unicode": "e8ca",
+      "unicode_decimal": 59594
+    },
+    {
+      "icon_id": "35543502",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e8cb",
+      "unicode_decimal": 59595
+    },
+    {
+      "icon_id": "35543508",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e8cc",
+      "unicode_decimal": 59596
+    },
+    {
+      "icon_id": "35543516",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e8cd",
+      "unicode_decimal": 59597
+    }
+  ]
+}

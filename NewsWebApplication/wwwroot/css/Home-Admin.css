@@ -82,7 +82,7 @@
     border-radius: 2px;
     /*text-align: center;*/
 }
-table {
+/*table {
     width: 98%;
     border:1px solid gray;
     padding:15px;
@@ -99,12 +99,194 @@ table {
 
     table td {
         text-align: center;
+    }*/
+
+.Info {
+    display: flex;
+    min-width: 210px;
+    min-height: 100px;
+    background-color: white;
+    margin-left: 0px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+    transition: box-shadow 0.3s ease;
+    border: 1px solid transparent; /* 添加边框样式 */
+}
+
+    .Info:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        border-color: #0000ff; /* 设置边框颜色为蓝色 */
+        cursor: pointer;
     }
+
+.UserTableContainer {
+    max-height: 400px; /* 设置容器的最大高度 */
+    overflow-y: auto; /* 只显示垂直滚动条 */
+    overflow-x: hidden; /* 隐藏水平滚动条 */
+}
+
+
+.UserBlock {
+    background-color: white;
+    padding: 20px;
+    width:94%;
+}
+
+.UserListTitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.UserTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    .UserTable th,
+    .UserTable td {
+        border-bottom: 1px solid lightgray;
+        padding: 10px;
+        text-align: center;
+        font-size:13px
+    }
+
+    .UserTable th {
+        background-color: rgba(128, 128, 128, 0.2);
+        color: black;
+        font-weight: bold;
+    }
+
+    .UserTable td:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .UserTable td .ActionButton {
+        color: rgb(69, 141, 255);
+        cursor: pointer;
+        text-decoration: none;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+        .UserTable td .ActionButton:hover {
+            color: darkblue;
+            text-decoration: none;
+        }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .form-container label {
+        margin-bottom: 5px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container input[type="email"] {
+        width: 200px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    .form-container button {
+        padding: 8px 20px;
+        background-color: rgb(69, 141, 255);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+        .form-container button:hover {
+            background-color: darkblue;
+        }
+
+.NewBlock {
+    background-color: white;
+    padding: 20px;
+    width: 94%;
+}
+
+.NewListTitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.NewTableContainer {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.NewTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    .NewTable th,
+    .NewTable td {
+        border-bottom: 1px solid lightgray;
+        padding: 10px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .NewTable th {
+        background-color: rgba(128, 128, 128, 0.2);
+        color: black;
+        font-weight: bold;
+    }
+
+    .NewTable td:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 67px;
+    }
+
+    .NewTable td .ActionButton {
+        color: rgb(69, 141, 255);
+        cursor: pointer;
+        text-decoration: none;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+        .NewTable td .ActionButton:hover {
+            color: darkblue;
+            text-decoration: none;
+        }
+
+    .NewTable td p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 200px;
+        height: 20px;
+    }
+
+
+
 
 .conter {
     max-width: 960px;
-    max-height:600px;
-    overflow:scroll
+    max-height: 600px;
+    overflow: scroll;
+    overflow-y: hidden; /* 只显示垂直滚动条 */
+    overflow-x: hidden; /* 隐藏水平滚动条 */
     /*margin: 30px auto;*/
 }
 

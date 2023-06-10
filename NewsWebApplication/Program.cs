@@ -101,7 +101,8 @@ public class SynchronizationService : IHostedService, IDisposable
     }
     public List<string> RecommendationList(int UserId)
     {
-        string Path = @"D:\Desktop\alg\dist\Reg.exe";
+        //string Path = @"D:\Desktop\alg\dist\Reg.exe";
+        string Path = @"./wwwroot/alg/dist/Reg.exe";
         string Li = "";
         Process p = new Process();
         p.StartInfo.RedirectStandardOutput = true;

@@ -9,4 +9,4 @@
 ![image](https://github.com/ych0602/NewsWebApplication/blob/dev/1.0/NewsWebApplication/wwwroot/ReadmePic3.png)
 
 
-#### tips: if you want to run this programe, please make sure the referenced address is correct, inclding the algorithm address and the picture address, and ensure your database can connect to the programe
+#### tips: if you want to run this programe, please make sure the referenced address is correct, inclding the algorithm address and the picture address, and ensure your database can connect to the programe. the sql script document is in the /wwwroot/sql
